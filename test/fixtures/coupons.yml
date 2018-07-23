@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  coupon_code: MyString
+  expiration_date: 2018-07-23 15:21:19
+  offer_description: MyText
+  store: one
+
+two:
+  coupon_code: MyString
+  expiration_date: 2018-07-23 15:21:19
+  offer_description: MyText
+  store: two
