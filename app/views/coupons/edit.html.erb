@@ -26,6 +26,12 @@
   <%= f.label :expiration_date %>
   <%= f.date_field :expiration_date, min: Date.today %><br></br>
 
-  <%= f.submit %>
+  <%= f.submit %><br></br>
 
 <% end %>
+
+<div>
+<%= form_tag coupon_path(@coupon), method: :delete do %>
+  <%= submit_tag 'Delete Coupon' %>
+<% end %>
+</div>

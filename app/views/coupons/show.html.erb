@@ -21,3 +21,8 @@
     <td><%= @coupon.expires_on %></td>
   </tr>
 </table>
+<div>
+<%= form_tag "/coupons/#{@coupon.id}/edit", method: :get do %>
+  <%= submit_tag 'Update Coupon' %>
+<% end %>
+</div>
