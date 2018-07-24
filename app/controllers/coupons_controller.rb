@@ -13,7 +13,7 @@ class CouponsController < ApplicationController
       upcase_coupon_code
       @coupon = Coupon.new(coupon_params)
       if @coupon.save
-        redirect_to coupon_path(@coupon), notice: "Coupon succesfully created"
+        return redirect_to coupon_path(@coupon), notice: "Coupon succesfully created"
       end
     end
     flash.now[:alert] = "Please correct errors"
@@ -23,7 +23,7 @@ class CouponsController < ApplicationController
   private
 
   def coupon_params
-    params.require(:coupon).permit(:coupon_code, :expiration_date, :offer_description, :store, :item)
+    params.require(:coupon).permit(:coupon_code, :expiration_date, :offer_description, :item, :store_name)
   end
 
   def upcase_coupon_code
