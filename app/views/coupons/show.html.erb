@@ -6,7 +6,7 @@
   </tr>
   <tr>
     <th>Store</th>
-    <td><%= @coupon.store_name %></td>
+    <td><%= link_to @coupon.store_name, store_path(@coupon.store) %></td>
   </tr>
   <tr>
     <th>Code</th>
