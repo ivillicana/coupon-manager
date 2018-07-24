@@ -20,6 +20,11 @@ class CouponsController < ApplicationController
     render :new
   end
 
+  def show
+    @coupon = Coupon.find_by(id: params[:id])
+    redirect_to coupons_path if !@coupon
+  end
+
   private
 
   def coupon_params
