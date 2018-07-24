@@ -1,0 +1,21 @@
+<h1>Create New Coupon</h1>
+
+<%= form_for @coupon do |f| %>
+  <%= f.label :store %>
+  <%= f.text_field :store %><br>
+
+  <%= f.label :item %>
+  <%= f.email_field :item %><br>
+
+  <%= f.label :coupon_code %>
+  <%= f.text_field :coupon_code %><br>
+
+  <%= f.label :offer_description %>
+  <%= f.text_area :offer_description %><br>
+
+  <%= f.label :expiration_date %>
+  <%= f.date_field :expiration_date, min: Date.today %><br></br>
+
+  <%= f.submit %>
+
+<% end %>
