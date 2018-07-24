@@ -13,9 +13,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    @user = User.find_by(username: params[:user][:username])
-    return redirect_to new_session_path if login_params_empty?
-
+    session.delete :user_id
+    return redirect_to login_path
   end
 
   private
