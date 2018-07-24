@@ -12,7 +12,8 @@ class UsersController < ApplicationController
         redirect_to coupons_path, notice: "User successfully created!" if @user.save
       end
     end
-    render :new, alert: "Please correct errors"
+    flash.now[:alert] = "Please correct errors"
+    render :new
   end
 
   private
