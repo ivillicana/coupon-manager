@@ -2,5 +2,7 @@
 <% @stores.each do |store| %>
   <div class="store">
     <h3> <%= link_to store.name, store_path(store) %> </h3>
+    <ul>
+      <li><%= store_coupon_count(store) %></li>
   </div>
 <% end %>
