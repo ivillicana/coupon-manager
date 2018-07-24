@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_23_192144) do
+ActiveRecord::Schema.define(version: 2018_07_24_133927) do
 
   create_table "coupons", force: :cascade do |t|
     t.string "coupon_code"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2018_07_23_192144) do
     t.integer "store_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "item"
     t.index ["store_id"], name: "index_coupons_on_store_id"
   end
 
