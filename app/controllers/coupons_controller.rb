@@ -1,5 +1,5 @@
 class CouponsController < ApplicationController
-  before_action :find_coupon, only: [:show, :edit, :destroy]
+  before_action :find_coupon, only: [:show, :edit, :destroy, :update]
 
   def index
     @coupons = Coupon.all    
@@ -30,7 +30,7 @@ class CouponsController < ApplicationController
 
   def update
    
-    if @coupon = Coupon.find_by(id: params[:id])
+    if @coupon
       upcase_coupon_code
       if @coupon.update(coupon_params)
         redirect_to coupon_path(@coupon), alert: "Successfully updated coupon"
