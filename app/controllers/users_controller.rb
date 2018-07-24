@@ -7,11 +7,12 @@ class UsersController < ApplicationController
   def create
     if all_user_params_filled?
       downcase_username
-      @user = User.create(user_params)
-      redirect_to coupons_path, notice: "User successfully created!"
-    else
-      render :new, alert: "Please correct errors errors"
+      @user = User.new(user_params)
+      if @user.save
+        redirect_to coupons_path, notice: "User successfully created!" if @user.save
+      end
     end
+    render :new, alert: "Please correct errors"
   end
 
   private
