@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
 
   def new
-    redirect_to user_path(session[:user_id]) if session[:user_id]
+    return redirect_to user_path(session[:user_id]), alert: "You are already logged in" if session[:user_id]
   end
 
   def create
