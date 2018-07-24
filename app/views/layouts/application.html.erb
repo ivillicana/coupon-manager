@@ -10,6 +10,10 @@
   </head>
 
   <body>
+    <% flash.each do |name, msg| -%>
+      <%= content_tag :div, msg, class: name %>
+    <% end -%>
+
     <% if @user.errors.any? %>
       <div id="error_explanation">
         <ul>
@@ -19,6 +23,7 @@
         </ul>
       </div>
     <% end %>
+    
     
     <%= yield %>
   </body>
