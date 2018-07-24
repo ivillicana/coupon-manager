@@ -3,7 +3,7 @@
 <div>
   <% @coupons.each do |coupon| %>
     <ul>
-      <li><%= coupon.store %></li>
+      <li><%= coupon.store_name %></li>
       <li><%= coupon.item %></li>
       <li>Code: <%= coupon.coupon_code %></li>
       <li>Expires: <%= coupon.expiration_date %></li>
