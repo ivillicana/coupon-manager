@@ -9,7 +9,7 @@ class UsersController < ApplicationController
       downcase_username
       @user = User.new(user_params)
       if @user.save
-        redirect_to coupons_path, notice: "User successfully created!" if @user.save
+        return redirect_to coupons_path, notice: "User successfully created!" if @user.save
       end
     end
     flash.now[:alert] = "Please correct errors"
