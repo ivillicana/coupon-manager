@@ -1,4 +1,5 @@
 class CouponsController < ApplicationController
+  before_action :find_coupon, only: [:show, :edit]
 
   def index
     @coupons = Coupon.all    
@@ -21,12 +22,10 @@ class CouponsController < ApplicationController
   end
 
   def show
-    @coupon = Coupon.find_by(id: params[:id])
     redirect_to coupons_path, alert: "No such coupon exists" if !@coupon
   end
 
   def edit
-    @coupon = Coupon.find_by(id: params[:id])
   end
 
   def update
@@ -63,5 +62,9 @@ class CouponsController < ApplicationController
 
   def all_coupon_params_filled?
     coupon_params.to_h.all? { |k, v| !v.empty?}
+  end
+
+  def find_coupon
+    @coupon = Coupon.find_by(id: params[:id])
   end
 end
