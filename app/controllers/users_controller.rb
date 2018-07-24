@@ -14,6 +14,10 @@ class UsersController < ApplicationController
     render :new
   end
 
+  def show
+    redirect_to login_path, alert: "You must be signed in to see profile" unless @user = User.find_by(id: session[:user_id])
+  end
+
   private
 
   def user_params
