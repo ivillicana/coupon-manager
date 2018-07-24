@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   def new
+    redirect_to user_path(session[:user_id]), alert: "You are already logged in" if logged_in?
     @user = User.new
   end
 
@@ -15,7 +16,16 @@ class UsersController < ApplicationController
   end
 
   def show
-    redirect_to login_path, alert: "You must be signed in to see profile" unless @user = User.find_by(id: session[:user_id])
+    if !logged_in?
+      return redirect_to login_path, alert: "You must be signed in to see profile"
+    end
+    @user = User.find_by(id: params[:id])
+    if !@user
+      return redirect_to user_path(session[:user_id]), alert: "No such user"
+    elsif @user.id != session[:user_id]
+      return redirect_to user_path(session[:user_id]), alert: "You do not have access to user profile"
+    end
+    
   end
 
   private
@@ -32,5 +42,8 @@ class UsersController < ApplicationController
     user_params[:username].downcase!
   end
 
+  def logged_in?
+    !!session[:user_id]
+  end
 
 end
