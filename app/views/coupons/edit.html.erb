@@ -1,0 +1,31 @@
+<% if @coupon.errors.any? %>
+  <div id="error_explanation">
+    <ul>
+    <% @coupon.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<h1>Coupon Edit Page</h1>
+
+<%= form_for @coupon do |f| %>
+  <%= f.label :store_name %>
+  <%= f.text_field :store_name %><br>
+
+  <%= f.label :item %>
+  <%= f.text_field :item %><br>
+
+  <%= f.label :coupon_code %>
+  <%= f.text_field :coupon_code %><br>
+
+  <%= f.label :offer_description %>
+  <%= f.text_area :offer_description %><br>
+
+  <%= f.label :expiration_date %>
+  <%= f.date_field :expiration_date, min: Date.today %><br></br>
+
+  <%= f.submit %>
+
+<% end %>
