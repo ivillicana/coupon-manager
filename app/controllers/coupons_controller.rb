@@ -25,6 +25,24 @@ class CouponsController < ApplicationController
     redirect_to coupons_path, alert: "No such coupon exists" if !@coupon
   end
 
+  def edit
+    @coupon = Coupon.find_by(id: params[:id])
+  end
+
+  def update
+   
+    if @coupon = Coupon.find_by(id: params[:id])
+      upcase_coupon_code
+      if @coupon.update(coupon_params)
+        redirect_to coupon_path(@coupon), alert: "Successfully updated coupon"
+      else
+        render :edit, alert: "Unable to update coupon. Please check errors"
+      end
+    else
+      redirect_to coupons_path, alert: "Unable to find coupon"
+    end
+  end
+
   private
 
   def coupon_params
