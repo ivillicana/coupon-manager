@@ -67,7 +67,7 @@ class CouponsController < ApplicationController
   end
 
   def redirect_if_coupon_doesnt_exist
-    redirect_to coupons_path, alert: "No such coupon exists" if (!@coupon || !coupon)
+    redirect_to coupons_path, alert: "No such coupon exists" if !@coupon
   end
 
 end
