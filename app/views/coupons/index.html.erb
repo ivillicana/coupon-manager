@@ -2,11 +2,9 @@
 
 <div>
   <% @coupons.each do |coupon| %>
+    <h4><%= link_to coupon.item, coupon_path(coupon) %></h4> 
     <ul>
       <li><%= coupon.store_name %></li>
-      <li><%= coupon.item %></li>
-      <li>Code: <%= coupon.coupon_code %></li>
-      <li>Expires: <%= coupon.expiration_date %></li>
       <li>Description: <%= coupon.offer_description %></li>
     </ul>
   <% end %>
