@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Coupon Manager</title>
+    <title>CouponManager</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,17 +10,6 @@
   </head>
 
   <body>
-    <% if @user.errors.any? %>
-      <div id="error_explanation">
-        <ul>
-        <% @user.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
-
     <%= yield %>
-    
   </body>
 </html>
