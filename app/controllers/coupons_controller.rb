@@ -22,7 +22,7 @@ class CouponsController < ApplicationController
 
   def show
     @coupon = Coupon.find_by(id: params[:id])
-    redirect_to coupons_path if !@coupon
+    redirect_to coupons_path, alert: "No such coupon exists" if !@coupon
   end
 
   private
