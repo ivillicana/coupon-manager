@@ -1,5 +1,5 @@
 class CouponsController < ApplicationController
-  before_action :find_coupon, only: [:show, :edit]
+  before_action :find_coupon, only: [:show, :edit, :destroy]
 
   def index
     @coupons = Coupon.all    
@@ -43,7 +43,7 @@ class CouponsController < ApplicationController
   end
 
   def destroy
-    Coupon.find_by(id: params[:id]).destroy
+    @coupon.destroy
     redirect_to coupons_path, alert: "Successfully deleted coupon"
   end
 
