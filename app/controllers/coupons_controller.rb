@@ -43,6 +43,14 @@ class CouponsController < ApplicationController
     end
   end
 
+  def destroy
+    if coupon = Coupon.find_by(id: params[:id])
+      coupon.destroy
+    else
+      redirect_to coupons_path, alert: "Unable to delete coupon"
+    end
+  end
+
   private
 
   def coupon_params
