@@ -1,2 +1,8 @@
 <h1>User Show Page</h1>
 <p><%= @user.name %></p>
+
+<div>
+<%= form_tag logout_path do %>
+  <%= submit_tag 'Log Out' %>
+<% end %>
+</div>
