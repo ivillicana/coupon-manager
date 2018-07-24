@@ -11,11 +11,11 @@
 <h1>Create New Coupon</h1>
 
 <%= form_for @coupon do |f| %>
-  <%= f.label :store %>
-  <%= f.text_field :store %><br>
+  <%= f.label :store_name %>
+  <%= f.text_field :store_name %><br>
 
   <%= f.label :item %>
-  <%= f.email_field :item %><br>
+  <%= f.text_field :item %><br>
 
   <%= f.label :coupon_code %>
   <%= f.text_field :coupon_code %><br>
