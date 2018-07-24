@@ -5,10 +5,12 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(username: params[:user][:username].downcase!)
+    @user = User.find_by(username: params[:user][:username].downcase)
     @user = @user.try(:authenticate, params[:user][:password])
+
     return redirect_to login_path, alert: "Unable to sign in" unless @user
-    session[:user_id] = @user.id 
+
+    session[:user_id] = @user.id
     redirect_to user_path(@user), alert: "Welcome #{@user.name}"
   end
 
