@@ -4,7 +4,7 @@ class CreateCoupons < ActiveRecord::Migration[5.2]
       t.string :coupon_code
       t.datetime :expiration_date
       t.text :offer_description
-      t.belongs_to :store, foreign_key: true
+      t.references :store, foreign_key: true
 
       t.timestamps
     end
