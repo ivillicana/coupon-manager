@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_24_133927) do
+ActiveRecord::Schema.define(version: 2018_07_24_134918) do
 
   create_table "coupons", force: :cascade do |t|
     t.string "coupon_code"
-    t.datetime "expiration_date"
+    t.date "expiration_date", null: false
     t.text "offer_description"
     t.integer "store_id"
     t.datetime "created_at", null: false
