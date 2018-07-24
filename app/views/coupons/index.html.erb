@@ -1,11 +1,19 @@
 <h1>Coupons Index Page</h1>
 
-<div>
+<div class="coupons">
   <% @coupons.each do |coupon| %>
+    <div class="coupon">
     <h4><%= link_to coupon.item, coupon_path(coupon) %></h4> 
     <ul>
       <li><%= coupon.store_name %></li>
       <li>Description: <%= coupon.offer_description %></li>
     </ul>
+    </div>
   <% end %>
+</div>
+
+<div>
+<%= form_tag new_coupon_path(@coupon), method: :get do %>
+  <%= submit_tag 'New Coupon' %>
+<% end %>
 </div>
