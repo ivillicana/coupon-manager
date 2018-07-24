@@ -10,4 +10,8 @@ class Coupon < ApplicationRecord
   def store_name
     self.store ? self.store.name : nil
   end
+
+  def expires_on
+    self.expiration_date.strftime("%m/%d/%Y")
+  end
 end
