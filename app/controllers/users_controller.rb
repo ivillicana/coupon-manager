@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   def create
     if all_user_params_filled?
-      downcase_username
+      downcase_email
       @user = User.new(user_params)
       return redirect_to coupons_path, notice: "User successfully created!" if @user.save
     end
@@ -29,15 +29,15 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :username)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 
   def all_user_params_filled?
     user_params.to_h.all? { |k, v| !v.empty?}
   end
 
-  def downcase_username
-    user_params[:username].downcase!
+  def downcase_email
+    user_params[:email].downcase!
   end
 
 end
