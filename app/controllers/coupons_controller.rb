@@ -7,7 +7,7 @@ class CouponsController < ApplicationController
   end
 
   def new
-    @coupon = Coupon.new
+    @coupon = Coupon.new(store_id: params[:store_id])
   end
 
   def create
@@ -45,7 +45,7 @@ class CouponsController < ApplicationController
   private
 
   def coupon_params
-    params.require(:coupon).permit(:coupon_code, :expiration_date, :offer_description, :item, :store_name)
+    params.require(:coupon).permit(:coupon_code, :expiration_date, :offer_description, :item, :store_name, :store_id)
   end
 
   def upcase_coupon_code
