@@ -7,7 +7,11 @@ class CouponsController < ApplicationController
   end
 
   def new
-    @coupon = Coupon.new(store_id: params[:store_id])
+    if params[:store_id] && !Store.exists?(params[:store_id])
+      return redirect_to stores_path, alert: "Store not found"
+    else
+      @coupon = Coupon.new(store_id: params[:store_id])
+    end
   end
 
   def create
