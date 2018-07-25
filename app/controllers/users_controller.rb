@@ -10,7 +10,10 @@ class UsersController < ApplicationController
     if all_user_params_filled?
       downcase_email
       @user = User.new(user_params)
-      return redirect_to coupons_path, notice: "User successfully created!" if @user.save
+      if @user.save
+        session[:user_id] = @user.id
+        return redirect_to coupons_path, notice: "User successfully created!"
+      end
     end
     flash.now[:alert] = "Please correct errors"
     render :new
