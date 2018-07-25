@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(username: params[:user][:username].downcase)
+    @user = User.find_by(email: params[:user][:email].downcase)
     @user = @user.try(:authenticate, params[:user][:password])
 
     return redirect_to login_path, alert: "Unable to sign in" unless @user
@@ -34,7 +34,7 @@ class SessionsController < ApplicationController
   private
 
   def login_params_empty?
-    !params[:user][:username] || params[:user][:username].empty?
+    !params[:user][:email] || params[:user][:email].empty?
   end
 
   def auth
