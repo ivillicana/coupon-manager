@@ -1,6 +1,6 @@
 class CouponsController < ApplicationController
   before_action :find_coupon, only: [:show, :edit, :destroy, :update]
-  before_action :redirect_if_coupon_doesnt_exist, only: [:show, :edit]
+  before_action :redirect_if_coupon_doesnt_exist, only: [:show, :edit, :update]
 
   def index
     @coupons = Coupon.all    
@@ -23,24 +23,17 @@ class CouponsController < ApplicationController
   end
 
   def show
-    redirect_if_coupon_doesnt_exist
   end
 
   def edit
-    redirect_if_coupon_doesnt_exist
   end
 
   def update
-   
-    if @coupon
-      upcase_coupon_code
-      if @coupon.update(coupon_params)
-        redirect_to coupon_path(@coupon), alert: "Successfully updated coupon"
-      else
-        render :edit, alert: "Unable to update coupon. Please check errors"
-      end
+    upcase_coupon_code
+    if @coupon.update(coupon_params)
+      redirect_to coupon_path(@coupon), alert: "Successfully updated coupon"
     else
-      redirect_to coupons_path, alert: "Unable to find coupon"
+      render :edit, alert: "Unable to update coupon. Please check errors"
     end
   end
 
