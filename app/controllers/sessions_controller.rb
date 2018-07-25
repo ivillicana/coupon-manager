@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
       u.image = auth['info']['image']
       u.password = auth['uid']
     end
- 
+    return redirect_to login_path, alert: "A user already exists with Facebook email that was used to attempt log in. Please log in directly with email." unless @user.try(:save)
     session[:user_id] = @user.id
     redirect_to user_path(@user), alert: "Welcome #{@user.name}"
   end
