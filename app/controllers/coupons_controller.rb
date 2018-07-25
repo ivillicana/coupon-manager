@@ -26,6 +26,15 @@ class CouponsController < ApplicationController
   end
 
   def edit
+    if params[:store_id]
+      store = Store.find_by(id: params[:store_id])
+      if store.nil?
+          redirect_to stores_path, alert: "Store not found"
+      else
+        @coupon = store.coupons.find_by(id: params[:id])
+        redirect_to store_coupons_path(store), alert: "Coupon not found" if @coupon.nil?
+      end
+    end
   end
 
   def update
@@ -45,7 +54,7 @@ class CouponsController < ApplicationController
   private
 
   def coupon_params
-    params.require(:coupon).permit(:coupon_code, :expiration_date, :offer_description, :item, :store_name, :store_id)
+    params.require(:coupon).permit(:coupon_code, :expiration_date, :offer_description, :item,  :store_id, :store_name)
   end
 
   def upcase_coupon_code
