@@ -1,9 +1,6 @@
-<h1>User Show Page</h1>
-<h4><%= @user.name %></h4>
-<img src="<%= @user.try(:image) %>">
 
-<div>
-<%= form_tag logout_path do %>
-  <%= submit_tag 'Log Out' %>
-<% end %>
+<h3><%= @user.name %></h3>
+<div class="image">
+  <img src="<%= @user.try(:image) %>">
 </div>
+
