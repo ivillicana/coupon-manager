@@ -1,0 +1,7 @@
+<%= f.label :store_name %>
+  <%= f.text_field :store_name, list: "store_names" %>
+  <datalist id="store_names">
+    <% all_stores.each do |store| %>
+      <option value="<%= store.name %>">
+    <% end %>
+  </datalist>

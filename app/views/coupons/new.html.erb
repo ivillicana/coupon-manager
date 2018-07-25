@@ -12,10 +12,7 @@
 
 <%= form_for @coupon do |f| %>
 
-  <%= f.hidden_field :store_id %>
-  
-  <%= f.label :store_name %>
-  <%= f.text_field :store_name %><br>
+  <%= store_id_field(@coupon, f) %><br>
 
   <%= f.label :item %>
   <%= f.text_field :item %><br>
