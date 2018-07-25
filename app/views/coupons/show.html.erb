@@ -22,7 +22,7 @@
   </tr>
 </table>
 <div>
-<%= form_tag "/coupons/#{@coupon.id}/edit", method: :get do %>
+<%= form_tag edit_store_coupon_path(@coupon.store, @coupon), method: :get do %>
   <%= submit_tag 'Update Coupon' %>
 <% end %>
 </div>

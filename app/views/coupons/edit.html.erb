@@ -11,6 +11,9 @@
 <h1>Coupon Edit Page</h1>
 
 <%= form_for @coupon do |f| %>
+
+  <%= f.hidden_field :store_id %>
+
   <%= f.label :store_name %>
   <%= f.text_field :store_name %><br>
 
