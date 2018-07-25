@@ -22,8 +22,8 @@ class CouponsController < ApplicationController
         return redirect_to coupon_path(@coupon), notice: "Coupon succesfully created"
       end
     end
-    flash.now[:alert] = "Please correct errors"
     render :new
+    
   end
 
   def show
@@ -46,7 +46,7 @@ class CouponsController < ApplicationController
     if @coupon.update(coupon_params)
       redirect_to coupon_path(@coupon), alert: "Successfully updated coupon"
     else
-      render :edit, alert: "Unable to update coupon. Please check errors"
+      render :edit
     end
   end
 
