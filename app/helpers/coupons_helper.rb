@@ -5,6 +5,7 @@ module CouponsHelper
       render partial: 'store_datalist', locals: {f: f}
     else
       hidden_field_tag "coupon[store_id]", coupon.store_id
+      label_tag 'coupon_store_id', coupon.store.name
     end
   end
 end
