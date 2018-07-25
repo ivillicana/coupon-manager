@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
   root 'application#home'
   resources :coupons
+
   resources :stores
+  resources :stores do
+    resources :coupons, only: [:show, :index, :new, :edit]
+  end
+
   resources :users
+  
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   post '/logout', to: 'sessions#destroy'
