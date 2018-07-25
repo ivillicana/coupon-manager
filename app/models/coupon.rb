@@ -3,6 +3,8 @@ class Coupon < ApplicationRecord
   has_many :users, through: :user_coupons
   has_many :user_coupons
 
+  validates :item, :coupon_code, :offer_description, :expiration_date, :store_id, presence: true
+
   def store_name=(args)
     self.store = Store.find_or_create_by(name: args)
   end

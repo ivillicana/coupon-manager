@@ -15,15 +15,12 @@ class CouponsController < ApplicationController
   end
 
   def create
-    if all_coupon_params_filled?
-      upcase_coupon_code
-      @coupon = Coupon.new(coupon_params)
-      if @coupon.save
-        return redirect_to coupon_path(@coupon), notice: "Coupon succesfully created"
-      end
+    upcase_coupon_code
+    @coupon = Coupon.new(coupon_params)
+    if @coupon.save
+      return redirect_to coupon_path(@coupon), notice: "Coupon succesfully created"
     end
     render :new
-    
   end
 
   def show
@@ -62,7 +59,7 @@ class CouponsController < ApplicationController
   end
 
   def upcase_coupon_code
-    coupon_params[:coupon_code].upcase!
+    coupon_params[:coupon_code].try(:upcase!)
   end
 
   def all_coupon_params_filled?
