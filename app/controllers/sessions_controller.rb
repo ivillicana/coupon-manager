@@ -24,9 +24,5 @@ class SessionsController < ApplicationController
   def login_params_empty?
     !params[:user][:username] || params[:user][:username].empty?
   end
-
-  def redirect_if_logged_in
-    return redirect_to user_path(session[:user_id]), alert: "You are already logged in" if session[:user_id]
-  end
   
 end

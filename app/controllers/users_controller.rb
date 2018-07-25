@@ -40,8 +40,4 @@ class UsersController < ApplicationController
     user_params[:username].downcase!
   end
 
-  def redirect_if_logged_in
-    return redirect_to user_path(session[:user_id]), alert: "You are already logged in" if logged_in?
-  end
-
 end
