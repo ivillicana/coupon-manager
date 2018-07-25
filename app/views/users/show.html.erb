@@ -1,5 +1,6 @@
 <h1>User Show Page</h1>
-<p><%= @user.name %></p>
+<h4><%= @user.name %></h4>
+<img src="<%= @user.try(:image) %>">
 
 <div>
 <%= form_tag logout_path do %>
