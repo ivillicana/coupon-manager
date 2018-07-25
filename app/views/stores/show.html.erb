@@ -1,5 +1,7 @@
 <h1><%= @store.name %></h1>
 
+<h4><%= link_to "New #{@store.name} Coupon", new_store_coupon_path(@store) %></h4>
+
 <% store_coupons(@store).each do |coupon|%>
   <div class="coupon">
     <ul>
