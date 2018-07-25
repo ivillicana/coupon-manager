@@ -7,7 +7,10 @@
   <%= f.label :password %>
   <%= f.password_field :password %><br></br>
 
-  <%= f.submit "Log In" %><br>
-  Or<br> 
+  <%= f.submit "Log In" %><br></br>
+  Or<br></br> 
   <%= link_to "Sign Up", new_user_path %>
 <% end %>
+<div>
+  <%= link_to('Log in with Facebook!', '/auth/facebook') %>
+</div>
