@@ -10,7 +10,7 @@ class CouponsController < ApplicationController
         @coupons = Coupon.expiring_last
       end
     else
-      @coupons = Coupon.all
+      @coupons = Coupon.order('item')
     end    
   end
 
