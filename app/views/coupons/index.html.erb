@@ -1,4 +1,12 @@
-<h1>Coupons Index Page</h1>
+<h1>Coupons Page</h1>
+
+<div class="sort">
+  <h5>Sort Coupons:</h5>
+  <%= form_tag coupons_path, method: :get do %>
+    <%= select_tag "date", options_for_select(["Expiring Soon", "Expiring Later"]), include_blank: true %>
+    <%= submit_tag "Sort" %>
+  <% end %>
+</div>
 
 <div class="coupons">
   <% @coupons.each do |coupon| %>
