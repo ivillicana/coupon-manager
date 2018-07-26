@@ -16,4 +16,12 @@ class Coupon < ApplicationRecord
   def expires_on
     self.expiration_date.strftime("%m/%d/%Y")
   end
+
+  def self.expiring_soon
+    order('expiration_date ASC')
+  end
+
+  def self.expiring_last
+    order('expiration_date DESC')
+  end
 end
