@@ -24,4 +24,15 @@ class Coupon < ApplicationRecord
   def self.expiring_last
     order('expiration_date DESC')
   end
+
+  def expiration_countdown
+    if self.expiration_date == Date.today
+      "Expires today!"
+    elsif self.expiration_date < Date.today
+      "Sorry... this coupon has expired"
+    else
+      difference_days = (self.expiration_date - Date.today).to_i
+      "Expires in #{difference_days} #{"day".pluralize(difference_days)}"
+    end
+  end
 end
