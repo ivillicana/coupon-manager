@@ -3,7 +3,15 @@ class CouponsController < ApplicationController
   before_action :redirect_if_coupon_doesnt_exist, only: [:show, :edit, :update, :destroy]
 
   def index
-    @coupons = Coupon.all    
+    if !params[:date].blank?
+      if params[:date] == "Expiring Soon"
+        @coupons = Coupon.expiring_soon
+      else
+        @coupons = Coupon.expiring_last
+      end
+    else
+      @coupons = Coupon.all
+    end    
   end
 
   def new
