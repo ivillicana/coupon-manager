@@ -1,4 +1,5 @@
 class CouponsController < ApplicationController
+  before_action :redirect_if_not_logged_in
   before_action :find_coupon, only: [:show, :edit, :destroy, :update]
   before_action :redirect_if_coupon_doesnt_exist, only: [:show, :edit, :update, :destroy]
 
