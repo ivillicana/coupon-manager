@@ -1,28 +1,39 @@
-<h1>Coupons Page</h1>
 
-<div class="sort">
-  <h5>Sort Coupons:</h5>
-  <%= form_tag coupons_path, method: :get do %>
-    <%= select_tag "date", options_for_select(["Expiring Soon", "Expiring Later"]), include_blank: true %>
-    <%= submit_tag "Sort" %>
+
+<div class="container">
+  <div class="row">
+    <h1 class="col text-center">Coupons Page</h1>
+  </div>
+  <div class="row">
+    <h5 class="col text-center">Sort Coupons:</h5>
+  </div>
+  <div class="row">
+  <%= form_tag coupons_path, method: :get, class: "text-center col" do %>
+    <%= select_tag "date", options_for_select(["Expiring Soon", "Expiring Later"]), include_blank: true%>
+    <%= submit_tag "Sort"%>
   <% end %>
+  </div>
+
+
+<div class="row">
+<%= form_tag new_coupon_path(@coupon), method: :get, class: "text-center col"  do %>
+  <%= submit_tag 'New Coupon' %>
+<% end %>
+</div>
 </div>
 
-<div class="coupons">
+<div class="container">
   <% @coupons.each do |coupon| %>
-    <div class="coupon">
-    <h4><%= link_to coupon.item, coupon_path(coupon) %></h4> 
-    <ul>
-      <li><%= coupon.store_name %></li>
-      <li>Description: <%= coupon.offer_description %></li>
-      <li><%= coupon.expiration_countdown %></li>
+    <div class="col">
+    <ul class="list-unstyled">
+      <h4><%= link_to coupon.item, coupon_path(coupon) %></h4>
+      <ul>
+        <li class="row"><%= coupon.store_name %></li>
+        <li class="row">Description: <%= coupon.offer_description %></li>
+        <li class="row"><%= coupon.expiration_countdown %></li>
+      </ul>
     </ul>
     </div>
   <% end %>
 </div>
 
-<div>
-<%= form_tag new_coupon_path(@coupon), method: :get do %>
-  <%= submit_tag 'New Coupon' %>
-<% end %>
-</div>

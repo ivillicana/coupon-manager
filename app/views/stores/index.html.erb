@@ -1,8 +1,15 @@
-<h1>Stores</h1>
-<% @stores.each do |store| %>
-  <div class="store">
-    <h3> <%= link_to store.name, store_path(store) %> </h3>
-    <ul>
-      <li><%= store_coupon_count(store) %></li>
+<div class="container">
+  <div class="row">
+    <h1 class="col text-center">Stores</h1>
   </div>
+</div>
+
+<div class="container">
+<% @stores.each do |store| %>
+  <h3 class="row"> <%= link_to store.name, store_path(store) %> </h3>
+  <ul>
+    <li class="row"><%= store_coupon_count(store) %></li>
+  </ul>
+  
 <% end %>
+</div>
