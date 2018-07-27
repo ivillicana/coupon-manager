@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   def create
     if all_user_params_filled?
+      capitalize_name
       downcase_email
       @user = User.new(user_params)
       if @user.save
@@ -41,6 +42,10 @@ class UsersController < ApplicationController
 
   def downcase_email
     user_params[:email].downcase!
+  end
+
+  def capitalize_name
+    user_params[:name].split.each {|w| w.capitalize!}.join(" ")
   end
 
 end
