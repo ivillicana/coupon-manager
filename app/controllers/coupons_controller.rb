@@ -65,12 +65,13 @@ class CouponsController < ApplicationController
   end
 
   def save_to_profile
-    current_coupon_folder << @coupon.id
+    current_user.coupons << @coupon
     redirect_to coupon_path(@coupon), alert: "Saved coupon to your profile"
   end
 
   def delete_from_profile
-    current_coupon_folder.delete(@coupon.id)
+    user_coupon = current_user.user_coupons.where(coupon_id: @coupon.id)
+    UserCoupon.destroy(user_coupon.ids)
     redirect_to coupon_path(@coupon), alert: "Deleted coupon from your profile"
   end
 

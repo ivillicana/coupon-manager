@@ -25,7 +25,7 @@
 <%= form_tag edit_store_coupon_path(@coupon.store, @coupon), method: :get do %>
   <%= submit_tag 'Update Coupon' %>
 <% end %><br></br>
-<% if current_coupon_folder.include? (@coupon.id) %>
+<% if current_user.coupons.include? (@coupon) %>
   <%= form_tag delete_coupon_path(@coupon) do %>
     <%= submit_tag 'Delete from Profile' %>
   <% end %>

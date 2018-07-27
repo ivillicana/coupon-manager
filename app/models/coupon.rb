@@ -1,7 +1,8 @@
 class Coupon < ApplicationRecord
   belongs_to :store
-  has_many :users, through: :user_coupons
   has_many :user_coupons
+  has_many :users, through: :user_coupons
+  
 
   validates :item, :coupon_code, :offer_description, :expiration_date, :store_id, presence: true
 
