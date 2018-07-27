@@ -28,6 +28,7 @@ class CouponsController < ApplicationController
 
   def create
     upcase_coupon_code
+    capitalize_item
     @coupon = Coupon.new(coupon_params)
     if @coupon.save
       return redirect_to coupon_path(@coupon), notice: "Coupon succesfully created"
@@ -52,6 +53,7 @@ class CouponsController < ApplicationController
 
   def update
     upcase_coupon_code
+    capitalize_item
     if @coupon.update(coupon_params)
       redirect_to coupon_path(@coupon), alert: "Successfully updated coupon"
     else
@@ -83,6 +85,14 @@ class CouponsController < ApplicationController
 
   def upcase_coupon_code
     coupon_params[:coupon_code].try(:upcase!)
+  end
+
+  def capitalize_item
+    coupon_params[:item].split.each {|w| w.capitalize!}.join(" ")
+  end
+
+  def capitalize_store
+    coupon_params[:store_name].split.each {|w| w.capitalize!}.join(" ")
   end
 
   def all_coupon_params_filled?
