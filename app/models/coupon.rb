@@ -25,6 +25,10 @@ class Coupon < ApplicationRecord
     order('expiration_date DESC')
   end
 
+  def self.by_store(store_id)
+    where(store: store_id)
+  end
+
   def expiration_countdown
     if self.expiration_date == Date.today
       "Expires today!"
