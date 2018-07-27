@@ -1,6 +1,6 @@
 class CouponsController < ApplicationController
   before_action :redirect_if_not_logged_in
-  before_action :find_coupon, only: [:show, :edit, :destroy, :update]
+  before_action :find_coupon, only: [:show, :edit, :destroy, :update, :save_to_profile, :delete_from_profile]
   before_action :redirect_if_coupon_doesnt_exist, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -62,6 +62,16 @@ class CouponsController < ApplicationController
   def destroy
     @coupon.destroy
     redirect_to coupons_path, alert: "Successfully deleted coupon"
+  end
+
+  def save_to_profile
+    current_coupon_folder << @coupon.id
+    redirect_to coupon_path(@coupon), alert: "Saved coupon to your profile"
+  end
+
+  def delete_from_profile
+    current_coupon_folder.delete(@coupon.id)
+    redirect_to coupon_path(@coupon), alert: "Deleted coupon from your profile"
   end
 
   private

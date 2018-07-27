@@ -28,6 +28,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session.delete :user_id
+    session.try(:delete, :coupon_folder)
     return redirect_to login_path
   end
 

@@ -7,3 +7,13 @@
   </div>
 </div>
 
+<div class="container">
+  <% current_coupon_folder.each do |coupon_id| %>
+    <% coupon = Coupon.find_by(id: coupon_id) %>
+    <ul>
+      <p><%= link_to coupon.item, coupon_path(coupon) %></p>
+      <li><%= coupon.store_name %></li>
+    </ul>
+  <% end %>
+</div>
+
