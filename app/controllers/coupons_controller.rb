@@ -4,14 +4,17 @@ class CouponsController < ApplicationController
   before_action :redirect_if_coupon_doesnt_exist, only: [:show, :edit, :update, :destroy]
 
   def index
-    if !params[:date].blank?
-      if params[:date] == "Expiring Soon"
-        @coupons = Coupon.expiring_soon
-      else
-        @coupons = Coupon.expiring_last
-      end
+    @stores = Store.all
+    @coupons = Coupon.all
+    if !params[:store].blank? && !params[:date].blank?
+      sort_by_store
+      sort_by_expiration
+    elsif !params[:store].blank?
+      sort_by_store
+    elsif !params[:date].blank?
+      sort_by_expiration
     else
-      @coupons = Coupon.order('item')
+      @coupons.order('item')
     end    
   end
 
@@ -81,6 +84,18 @@ class CouponsController < ApplicationController
 
   def redirect_if_coupon_doesnt_exist
     redirect_to coupons_path, alert: "No such coupon exists" if !@coupon
+  end
+
+  def sort_by_expiration
+    if params[:date] == "Expiring Soon"
+      @coupons = @coupons.expiring_soon
+    else
+      @coupons = @coupons.expiring_last
+    end
+  end
+
+  def sort_by_store
+    @coupons = @coupons.by_store(params[:store])
   end
 
 end
