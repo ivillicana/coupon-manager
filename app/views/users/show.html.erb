@@ -10,9 +10,10 @@
 <div class="container">
   <% current_user.coupons.each do |coupon| %>
     
-    <ul>
-      <p><%= link_to coupon.item, coupon_path(coupon) %></p>
+    <ul class="list-unstyled">
+      <h4><%= link_to coupon.item, coupon_path(coupon) %></h4>
       <li><%= coupon.store_name %></li>
+      <li><%= coupon.expiration_countdown %></li>
     </ul>
   <% end %>
 </div>
