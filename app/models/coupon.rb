@@ -5,6 +5,7 @@ class Coupon < ApplicationRecord
   
 
   validates :item, :coupon_code, :offer_description, :expiration_date, :store_id, presence: true
+  validates :coupon_code, format: {with: /\A[^\s]+\z/, message: "must not have spaces"}
 
   def store_name=(args)
     self.store = Store.find_or_create_by(name: args.capitalize)
