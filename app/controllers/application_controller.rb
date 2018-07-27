@@ -20,5 +20,9 @@ class ApplicationController < ActionController::Base
   def current_coupon_folder
     session[:coupon_folder] ||= []
   end
+
+  def current_user
+    @user = User.find_by(id: session[:user_id]) if logged_in?
+  end
   
 end

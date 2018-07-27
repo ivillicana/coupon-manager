@@ -8,8 +8,8 @@
 </div>
 
 <div class="container">
-  <% current_coupon_folder.each do |coupon_id| %>
-    <% coupon = Coupon.find_by(id: coupon_id) %>
+  <% current_user.coupons.each do |coupon| %>
+    
     <ul>
       <p><%= link_to coupon.item, coupon_path(coupon) %></p>
       <li><%= coupon.store_name %></li>
