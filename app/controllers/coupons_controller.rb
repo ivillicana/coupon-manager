@@ -5,11 +5,12 @@ class CouponsController < ApplicationController
 
   def index
     @stores = Store.all
-    @coupons = Coupon.all.order('item ASC')
-    if !params[:store].blank? && !params[:date].blank?
+    @coupons = Coupon.all
+    
+    if !params[:store_id].blank? && !params[:date].blank?
       sort_by_store
       sort_by_expiration
-    elsif !params[:store].blank?
+    elsif !params[:store_id].blank?
       sort_by_store
     elsif !params[:date].blank?
       sort_by_expiration
@@ -114,7 +115,7 @@ class CouponsController < ApplicationController
   end
 
   def sort_by_store
-    @coupons = @coupons.by_store(params[:store])
+    @coupons = @coupons.by_store(params[:store_id])
   end
 
 end
