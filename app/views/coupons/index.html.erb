@@ -10,7 +10,7 @@
       <h5 class="col">Sort/Filter Coupons:</h5>
     </div>
     <div class="row">
-      <%= select_tag "store", options_from_collection_for_select(@stores, "id", "name"), include_blank: true %>
+      <%= select_tag "store_id", options_from_collection_for_select(@stores, "id", "name"), include_blank: true %>
     </div>
     <div class="row">
       <%= select_tag "date", options_for_select(["Expiring Soon", "Expiring Later"]), include_blank: true%>
