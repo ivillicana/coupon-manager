@@ -3,11 +3,16 @@ class StoresController < ApplicationController
   before_action :find_store, only: [:show, :edit, :update, :destroy]
 
   def index
-    @stores = Store.all
+    @stores = Store.order(:name)
   end
 
   def show
     
+  end
+
+  def most_coupons
+    @stores = Store.most_coupons
+    render 'index'
   end
 
   private
