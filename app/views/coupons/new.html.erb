@@ -17,21 +17,6 @@
 <div class="text-center">
   <h1 class="h2 mb-3">Create New Coupon</h1>
 
-  <%= form_for @coupon, html: {:class => "form-signin"} do |f| %>
-      <%= store_id_field(@coupon, f) %>
-
-      <%= f.text_field :item, placeholder: "Item Name", class: "form-control"  %>
-
-      <%= f.text_field :coupon_code, placeholder: "Coupon Code", class: "form-control"  %>
-
-      <%= f.text_area :offer_description, placeholder: "Offer Description", class: "form-control mb-3"  %>
-
-      <%= f.label :expiration_date, class: "p" %>
-
-      <%= f.date_field :expiration_date, min: Date.today, placeholder: "Expiration Date", class: "form-control mb-4"  %>
-
-      <%= f.submit class: "btn btn-lg btn-primary btn-block"%>
-
-
-  <% end %>
+  <%= render partial: 'coupon_form', locals: {coupon: @coupon}%>
+  
 </div>
