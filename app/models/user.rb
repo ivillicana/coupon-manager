@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :user_coupons
+  has_many :user_coupons, dependent: :destroy
   has_many :coupons, through: :user_coupons
   has_many :stores, through: :coupons
 

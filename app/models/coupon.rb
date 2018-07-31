@@ -1,6 +1,6 @@
 class Coupon < ApplicationRecord
   belongs_to :store
-  has_many :user_coupons
+  has_many :user_coupons, dependent: :destroy
   has_many :users, through: :user_coupons
   
   before_save :stylize_attributes
