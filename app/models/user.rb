@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :coupons, through: :user_coupons
   has_many :stores, through: :coupons
 
+  validates :name, :email, :password, presence: true
   validates :email, uniqueness: true
 
   has_secure_password
