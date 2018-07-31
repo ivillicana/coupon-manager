@@ -1,12 +1,20 @@
-<h1><%= @store.name %></h1>
+<div class="container">
+  <h1><%= @store.name %></h1>
+</div>
 
-<h4><%= link_to "New #{@store.name} Coupon", new_store_coupon_path(@store) %></h4>
+<div class="container">
+  <%= form_tag new_store_coupon_path(@store), method: :get  do %>
+    <%= submit_tag "New #{@store.name} Coupon" %>
+  <% end %>
+</div>
 
-<% store_coupons(@store).each do |coupon|%>
-  <div class="coupon">
-    <ul>
-     <li><%= link_to coupon.item, coupon_path(coupon) %></li>
-     <li><%= coupon.offer_description%></li>
-    </ul>
-  </div>
-<% end %>
+<div class="container">
+  <% store_coupons(@store).each do |coupon|%>
+    <div class="coupon row">
+      <ul>
+        <li><%= link_to coupon.item, coupon_path(coupon) %></li>
+        <li><%= coupon.offer_description%></li>
+      </ul>
+    </div>
+  <% end %>
+</div>
