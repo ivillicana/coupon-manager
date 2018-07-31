@@ -48,7 +48,7 @@ class Coupon < ApplicationRecord
 
   def stylize_attributes
     self.item = self.item.split.each {|w| w.capitalize!}.join(" ")
-    self.coupon_code = self.coupon_code.upcase!
+    self.coupon_code = self.coupon_code.upcase
   end
   
 end
