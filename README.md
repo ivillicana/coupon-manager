@@ -1,24 +1,18 @@
-# README
+# Coupon Manager
+A web application built on the Ruby on Rails framework that allows users to share store coupons.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Install Instructions
+Download or clone files from repository, run `bundle` to include necessary ruby gems. Run `rake db:migrate`, then use `shotgun` to use a local server. Seeded information for database can be included by running `rake db:seed`.
+Fork and clone the github repo.
+Run `bundle install`
+Run `rake db:migrate`
+Run `rake db:seed` to include seeded users, coupons, and stores
+To run a local server, use `rails s`
 
-Things you may want to cover:
+## Contributing
 
-* Ruby version
+Bug reports and pull requests are welcome on GitHub at https://github.com/ivillicana/coupon-manager. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
-* System dependencies
+## License
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The application is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
