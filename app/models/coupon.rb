@@ -31,6 +31,10 @@ class Coupon < ApplicationRecord
     where(store: store_id)
   end
 
+  def self.by_item_alphabetically
+    order(:item)
+  end
+
   def expiration_countdown
     if self.expiration_date == Date.today
       "Expires today!"

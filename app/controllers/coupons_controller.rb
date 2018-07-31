@@ -14,6 +14,8 @@ class CouponsController < ApplicationController
       sort_by_store
     elsif !params[:date].blank?
       sort_by_expiration
+    else
+      @coupons = Coupon.by_item_alphabetically
     end   
   end
 
@@ -26,8 +28,6 @@ class CouponsController < ApplicationController
   end
 
   def create
-    upcase_coupon_code
-    capitalize_item
     @coupon = Coupon.new(coupon_params)
     if @coupon.save
       return redirect_to coupon_path(@coupon), notice: "Coupon succesfully created"
@@ -51,8 +51,6 @@ class CouponsController < ApplicationController
   end
 
   def update
-    upcase_coupon_code
-    capitalize_item
     if @coupon.update(coupon_params)
       redirect_to coupon_path(@coupon), notice: "Successfully updated coupon"
     else
@@ -80,18 +78,6 @@ class CouponsController < ApplicationController
 
   def coupon_params
     params.require(:coupon).permit(:coupon_code, :expiration_date, :offer_description, :item,  :store_id, :store_name)
-  end
-
-  def upcase_coupon_code
-    coupon_params[:coupon_code].try(:upcase!)
-  end
-
-  def capitalize_item
-    params[:coupon][:item] = params[:coupon][:item].split.each {|w| w.capitalize!}.join("")
-  end
-
-  def capitalize_store
-    params[:coupon][:store_name] = params[:coupon][:store_name].split.each {|w| w.capitalize!}.join(" ")
   end
 
   def all_coupon_params_filled?
