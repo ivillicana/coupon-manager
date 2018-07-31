@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     if !@user
       return redirect_to user_path(session[:user_id]), alert: "No such user"
     elsif @user.id != session[:user_id]
-      return redirect_to user_path(session[:user_id]), alert: "You do not have access to user profile"
+      return redirect_to user_path(session[:user_id]), alert: "You do not have access that user's profile"
     end
     
   end

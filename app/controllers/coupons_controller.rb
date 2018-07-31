@@ -54,7 +54,7 @@ class CouponsController < ApplicationController
     upcase_coupon_code
     capitalize_item
     if @coupon.update(coupon_params)
-      redirect_to coupon_path(@coupon), alert: "Successfully updated coupon"
+      redirect_to coupon_path(@coupon), notice: "Successfully updated coupon"
     else
       render :edit
     end
@@ -62,18 +62,18 @@ class CouponsController < ApplicationController
 
   def destroy
     @coupon.destroy
-    redirect_to coupons_path, alert: "Successfully deleted coupon"
+    redirect_to coupons_path, notice: "Successfully deleted coupon"
   end
 
   def save_to_profile
     current_user.coupons << @coupon
-    redirect_to coupon_path(@coupon), alert: "Saved coupon to your profile"
+    redirect_to coupon_path(@coupon), notice: "Saved coupon to your profile"
   end
 
   def delete_from_profile
     user_coupon = current_user.user_coupons.where(coupon_id: @coupon.id)
     UserCoupon.destroy(user_coupon.ids)
-    redirect_to coupon_path(@coupon), alert: "Deleted coupon from your profile"
+    redirect_to coupon_path(@coupon), notice: "Deleted coupon from your profile"
   end
 
   private

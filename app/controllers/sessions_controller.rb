@@ -7,11 +7,10 @@ class SessionsController < ApplicationController
   def create
     @user = User.find_by(email: params[:user][:email].downcase)
     @user = @user.try(:authenticate, params[:user][:password])
-
     return redirect_to login_path, alert: "Unable to sign in" unless @user
 
     session[:user_id] = @user.id
-    redirect_to user_path(@user), alert: "Welcome #{@user.name}"
+    redirect_to user_path(@user), notice: "Welcome #{@user.name}"
   end
 
   def create_from_facebook
@@ -23,7 +22,7 @@ class SessionsController < ApplicationController
     end
     return redirect_to login_path, alert: "A user already exists with Facebook email that was used to attempt log in. Please log in directly with email." unless @user.try(:save)
     session[:user_id] = @user.id
-    redirect_to user_path(@user), alert: "Welcome #{@user.name}"
+    redirect_to user_path(@user), notice: "Welcome #{@user.name}"
   end
 
   def destroy
