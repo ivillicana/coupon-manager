@@ -8,8 +8,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new
-    capitalize_name
-    downcase_email
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
@@ -33,14 +31,6 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
-  end
-
-  def downcase_email
-    params[:user][:email] = params[:user][:email].downcase!
-  end
-
-  def capitalize_name
-    params[:user][:name] = params[:user][:name].split.each {|w| w.capitalize!}.join(" ")
   end
 
 end
