@@ -7,7 +7,7 @@
   
   <%= form_tag coupons_path, method: :get, class: "col" do %>
     <div class="row">
-      <h5 class="col">Sort/Filter Coupons:</h5>
+      <h5 class="col text-left">Sort/Filter Coupons:</h5>
     </div>
     <div class="row">
       <%= select_tag "store_id", options_from_collection_for_select(@stores, "id", "name"), include_blank: true %>
@@ -17,15 +17,12 @@
     </div>
     <%= submit_tag "Sort"%>
   <% end %>
-</div>
-
-
-<div class="row">
-  <%= form_tag new_coupon_path(@coupon), method: :get, class: "text-center col"  do %>
+  <div class="row">
+  <%= form_tag new_coupon_path(@coupon), method: :get  do %>
     <%= submit_tag 'New Coupon' %>
   <% end %>
+  </div>
 </div>
-
 
 <div class="container">
   <% @coupons.each do |coupon| %>
