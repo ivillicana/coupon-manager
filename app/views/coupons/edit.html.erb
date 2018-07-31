@@ -1,18 +1,4 @@
-<% if @coupon.errors.any? %>
-  <div class="alert alert-danger alert-dismissible fade show">
-
-    <ul>
-    <% @coupon.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-
-  </div>
-<% end %>
+<%= render partial: 'coupon_errors', locals: {coupon: @coupon}%>
 
 <div class="text-center">
   <h1 class="h2 mb-3">Update Coupon</h1>
