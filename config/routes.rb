@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :coupons, only: [:show, :index, :new, :edit]
   end
 
-  resources :users
+  resources :users, only: [:new, :create, :show]
   
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
