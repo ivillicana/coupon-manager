@@ -1,5 +1,4 @@
-<%= f.label :store_name %>
-  <%= f.text_field :store_name, list: "store_names" %>
+<%= f.text_field :store_name, placeholder: "Select Store or Create New", list: "store_names", class: "form-control" %>
   <datalist id="store_names">
     <% all_stores.each do |store| %>
       <option value="<%= store.name %>">

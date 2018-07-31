@@ -1,41 +1,36 @@
 
 
-<div class="container">
-  <div class="row">
-    <h1 class="col text-center">Coupons Page</h1>
-  </div>
+<div class="text-center">  
+    <h1 class="h2 mb-3">Coupons Page</h1>
   
-  <%= form_tag coupons_path, method: :get, class: "col" do %>
-    <div class="row">
-      <h5 class="col text-left">Sort/Filter Coupons:</h5>
-    </div>
-    <div class="row">
-      <%= select_tag "store_id", options_from_collection_for_select(@stores, "id", "name"), include_blank: true %>
-    </div>
-    <div class="row">
-      <%= select_tag "date", options_for_select(["Expiring Soon", "Expiring Later"]), include_blank: true%>
-    </div>
-    <%= submit_tag "Sort"%>
+  <%= form_tag coupons_path, method: :get, class: "form-signin login-2" do %>
+    
+      <h5 class="h6">Sort/Filter Coupons:</h5>
+    
+      <%= select_tag "store_id", options_from_collection_for_select(@stores, "id", "name"), include_blank: true, class: "form-control" %>
+    
+      <%= select_tag "date", options_for_select(["Expiring Soon", "Expiring Later"]), include_blank: true, class: "form-control"%>
+    
+      <%= submit_tag "Sort", class: "btn btn-md btn-secondary btn-block"%>
   <% end %>
-  <div class="row">
-  <%= form_tag new_coupon_path(@coupon), method: :get  do %>
-    <%= submit_tag 'New Coupon' %>
-  <% end %>
+
+  
+    <%= form_tag new_coupon_path(@coupon), method: :get, class: "form-signin login-2"  do %>
+      <%= submit_tag 'New Coupon', class: "btn btn-md btn-primary btn-block mb-5" %>
+    <% end %>
   </div>
 </div>
 
-<div class="container">
+<div class="text-center container-list">
   <% @coupons.each do |coupon| %>
-    <div class="col">
-      <ul class="list-unstyled">
-        <h4><%= link_to coupon.item, coupon_path(coupon) %></h4>
-        <ul>
-          <li class="row"><%= coupon.store_name %></li>
-          <li class="row">Description: <%= coupon.offer_description %></li>
-          <li class="row"><%= coupon.expiration_countdown %></li>
+      <ul class="list-unstyled mb-5">
+        <h1 class="h4 text-left"><%= link_to coupon.item, coupon_path(coupon) %></h1>
+        <ul class="list-unstyled text-left">
+          <li class="h6"><%= coupon.store_name %></li>
+          <li><%= coupon.offer_description %></li>
+          <li><%= coupon.expiration_countdown %></li>
         </ul>
       </ul>
-    </div>
   <% end %>
 </div>
 

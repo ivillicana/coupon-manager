@@ -1,40 +1,42 @@
 <% if @coupon.errors.any? %>
-  <div id="error_explanation">
+  <div class="alert alert-danger alert-dismissible fade show">
+
     <ul>
     <% @coupon.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
     <% end %>
     </ul>
+
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+
   </div>
 <% end %>
 
-<h1>Coupon Edit Page</h1>
+<div class="text-center">
+  <h1 class="h2 mb-3">Update Coupon</h1>
 
-<%= form_for @coupon do |f| %>
+  <%= form_for @coupon, html: {:class => "form-signin"} do |f| %>
+      <%= store_id_field(@coupon, f) %>
 
-  <%= f.hidden_field :store_id %>
+      <%= f.text_field :item, placeholder: "Item Name", class: "form-control"  %>
 
-  <%= f.label :store_name %>
-  <%= f.text_field :store_name %><br>
+      <%= f.text_field :coupon_code, placeholder: "Coupon Code", class: "form-control"  %>
 
-  <%= f.label :item %>
-  <%= f.text_field :item %><br>
+      <%= f.text_area :offer_description, placeholder: "Offer Description", class: "form-control mb-3"  %>
 
-  <%= f.label :coupon_code %>
-  <%= f.text_field :coupon_code %><br>
+      <%= f.label :expiration_date, class: "p" %>
 
-  <%= f.label :offer_description %>
-  <%= f.text_area :offer_description %><br>
+      <%= f.date_field :expiration_date, min: Date.today, placeholder: "Expiration Date", class: "form-control mb-3"  %>
 
-  <%= f.label :expiration_date %>
-  <%= f.date_field :expiration_date, min: Date.today %><br></br>
+      <%= f.submit class: "btn btn-lg btn-primary btn-block"%>
 
-  <%= f.submit %><br></br>
 
-<% end %>
+  <% end %>
 
-<div>
-<%= form_tag coupon_path(@coupon), method: :delete do %>
-  <%= submit_tag 'Delete Coupon' %>
-<% end %>
+  <%= form_tag coupon_path(@coupon), method: :delete, class: "form-signin login-2" do %>
+    <%= submit_tag "Delete Coupon",  class: "btn btn-md btn-secondary btn-block" %>
+  <% end %>
+
 </div>

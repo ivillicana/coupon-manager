@@ -1,16 +1,35 @@
-<h1>Log In</h1>
-
-<%= form_for :user, url: login_path, method: :post do |f| %>
-  <%= f.label :email %>
-  <%= f.text_field :email %><br>
-
-  <%= f.label :password %>
-  <%= f.password_field :password %><br></br>
-
-  <%= f.submit "Log In" %><br></br>
-  Or<br></br> 
-  <%= link_to "Sign Up", new_user_path %>
+<% if @user.errors.any? %>
+  <div class="alert alert-danger alert-dismissible fade show"
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button
+  </div>
 <% end %>
-<div>
-  <%= link_to('Log in with Facebook!', '/auth/facebook') %>
+
+<div class="text-center">  
+  <h1 class="h2 mb-3">Log In</h1>
+
+  <%= form_for @user, url: login_path, method: :post, html: {class: "form-signin login"} do |f| %>
+
+    <%= f.text_field :email, class: "form-control", placeholder: "Email" %>
+
+    <%= f.password_field :password, class: "form-control", placeholder: "Password", id: "user_password_confirmation" %>
+
+    <%= f.submit "Log In", class: "btn btn-lg btn-primary btn-block" %>
+   
+  <% end %>
+
+  <%= form_tag '/auth/facebook', method: "get", class: "form-signin login-2" do %>
+    <%= submit_tag "Facebook Login",  class: "btn btn-sm btn-secondary btn-block" %>
+  <% end %>
+
+  <%= form_tag new_user_path, method: "get", class: "form-signin login-2" do %>
+    <%= submit_tag "Sign Up",  class: "btn btn-sm btn-secondary btn-block" %>
+  <% end %>
+
 </div>

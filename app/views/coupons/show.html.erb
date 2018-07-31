@@ -1,5 +1,6 @@
-<h1>Coupon Show Page</h1>
-<table style="width:30%">
+<div class="text-center"> 
+  <h1 class="h1 mb-3">Coupon Show Page</h1>
+<table style="width:30%" class="mb-4 form-signin">
   <tr>
     <th>Item</th>
     <td><%= @coupon.item %></td>
@@ -22,17 +23,18 @@
   </tr>
 </table>
 <div>
-<%= form_tag edit_store_coupon_path(@coupon.store, @coupon), method: :get do %>
-  <%= submit_tag 'Update Coupon' %>
-<% end %><br></br>
+<%= form_tag edit_store_coupon_path(@coupon.store, @coupon), method: :get, class: "form-signin login-2" do %>
+  <%= submit_tag 'Update Coupon', class: "btn btn-md btn-primary btn-block mb-2" %>
+<% end %>
 <% if current_user.coupons.include? (@coupon) %>
-  <%= form_tag delete_coupon_path(@coupon) do %>
-    <%= submit_tag 'Delete from Profile' %>
+  <%= form_tag delete_coupon_path(@coupon), class: "form-signin login-2" do %>
+    <%= submit_tag 'Delete from my Profile', class: "btn btn-sm btn-secondary btn-block" %>
   <% end %>
 <% else %>
-  <%= form_tag save_coupon_path(@coupon) do %>
-    <%= submit_tag 'Save to Profile' %>
+  <%= form_tag save_coupon_path(@coupon), class: "form-signin login-2" do %>
+    <%= submit_tag 'Save to my Profile', class: "btn btn-sm btn-primary btn-block" %>
   <% end %>
 <% end %>
 
+</div>
 </div>

@@ -14,24 +14,24 @@
   </div>
 <% end %>
 
-<h1>Create New Coupon</h1>
+<div class="text-center">
+  <h1 class="h2 mb-3">Create New Coupon</h1>
 
-<%= form_for @coupon do |f| %>
+  <%= form_for @coupon, html: {:class => "form-signin"} do |f| %>
+      <%= store_id_field(@coupon, f) %>
 
-  <%= store_id_field(@coupon, f) %><br>
+      <%= f.text_field :item, placeholder: "Item Name", class: "form-control"  %>
 
-  <%= f.label :item %>
-  <%= f.text_field :item %><br>
+      <%= f.text_field :coupon_code, placeholder: "Coupon Code", class: "form-control"  %>
 
-  <%= f.label :coupon_code %>
-  <%= f.text_field :coupon_code %><br>
+      <%= f.text_area :offer_description, placeholder: "Offer Description", class: "form-control mb-3"  %>
 
-  <%= f.label :offer_description %>
-  <%= f.text_area :offer_description %><br>
+      <%= f.label :expiration_date, class: "p" %>
 
-  <%= f.label :expiration_date %>
-  <%= f.date_field :expiration_date, min: Date.today %><br></br>
+      <%= f.date_field :expiration_date, min: Date.today, placeholder: "Expiration Date", class: "form-control mb-4"  %>
 
-  <%= f.submit %>
+      <%= f.submit class: "btn btn-lg btn-primary btn-block"%>
 
-<% end %>
+
+  <% end %>
+</div>

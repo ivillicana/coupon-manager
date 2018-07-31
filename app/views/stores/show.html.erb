@@ -1,20 +1,18 @@
-<div class="container">
-  <h1><%= @store.name %></h1>
-</div>
-
-<div class="container">
-  <%= form_tag new_store_coupon_path(@store), method: :get  do %>
-    <%= submit_tag "New #{@store.name} Coupon" %>
+<div class="text-center">
+  <h1 class="h1 mb-3"><%= @store.name %></h1>
+  <%= form_tag new_store_coupon_path(@store), method: :get, class: "form-signin login-2"  do %>
+    <%= submit_tag "New #{@store.name} Coupon", class: "btn btn-sm btn-primary btn-block mb-5" %>
   <% end %>
 </div>
 
-<div class="container">
+
+<div class="text-center container-list">
   <% store_coupons(@store).each do |coupon|%>
-    <div class="coupon row">
-      <ul>
-        <li><%= link_to coupon.item, coupon_path(coupon) %></li>
+    <ul class="list-unstyled mb-5">
+      <h1 class="h4 text-left"><%= link_to coupon.item, coupon_path(coupon) %></h1>
+      <ul class="list-unstyled text-left">
         <li><%= coupon.offer_description%></li>
       </ul>
-    </div>
+    </ul>
   <% end %>
 </div>

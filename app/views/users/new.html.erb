@@ -1,34 +1,31 @@
 <% if @user.errors.any? %>
-      <div class="alert alert-danger alert-dismissible fade show">
-
-        <ul>
-        <% @user.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-
-      </div>
+  <div class="alert alert-danger alert-dismissible fade show"
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
     <% end %>
-    
-<h1>Create New User</h1>
-
-<%= form_for @user do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %><br>
-
-  <%= f.label :email %>
-  <%= f.email_field :email %><br>
-
-  <%= f.label :password %>
-  <%= f.password_field :password %><br>
-
-  <%= f.label :password_confirmation, "Confirm Password" %>
-  <%= f.password_field :password_confirmation %><br></br>
-
-  <%= f.submit %>
-
+    </ul
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button
+  </div>
 <% end %>
+
+<div class="text-center">  
+
+  <h1 class="h2 mb-3">Create New User</h1>
+
+  <%= form_for @user, html: {:class => "form-signin"} do |f| %>
+    
+    <%= f.text_field :name, class: "form-control", placeholder: "Name" %>
+
+    <%= f.email_field :email, class: "form-control", placeholder: "Email" %>
+
+    <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
+
+    <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Confirm Password" %>
+
+    <%= f.submit class: "btn btn-lg btn-primary btn-block" %>
+
+  <% end %>
+</div>
