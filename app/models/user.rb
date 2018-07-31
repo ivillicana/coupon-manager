@@ -11,6 +11,6 @@ class User < ApplicationRecord
 
   def stylize_user_attributes
     self.name = self.name.split.each {|w| w.capitalize!}.join(" ")
-    self.email = self.email.downcase!
+    self.email = self.email.downcase
   end
 end
