@@ -7,17 +7,16 @@ class UsersController < ApplicationController
   end
 
   def create
-    if all_user_params_filled?
-      capitalize_name
-      downcase_email
-      @user = User.new(user_params)
-      if @user.save
-        session[:user_id] = @user.id
-        return redirect_to coupons_path, notice: "User successfully created!"
-      end
+    @user = User.new
+    capitalize_name
+    downcase_email
+    @user = User.new(user_params)
+    if @user.save
+      session[:user_id] = @user.id
+      return redirect_to coupons_path, notice: "User successfully created!"
+    else
+      render :new
     end
-    flash.now[:alert] = "Please correct errors"
-    render :new
   end
 
   def show
@@ -34,10 +33,6 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
-  end
-
-  def all_user_params_filled?
-    user_params.to_h.all? { |k, v| !v.empty?}
   end
 
   def downcase_email
