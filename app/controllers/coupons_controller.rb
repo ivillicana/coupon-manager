@@ -87,11 +87,11 @@ class CouponsController < ApplicationController
   end
 
   def capitalize_item
-    coupon_params[:item].split.each {|w| w.capitalize!}.join(" ")
+    params[:coupon][:item] = params[:coupon][:item].split.each {|w| w.capitalize!}.join("")
   end
 
   def capitalize_store
-    coupon_params[:store_name].split.each {|w| w.capitalize!}.join(" ")
+    params[:coupon][:store_name] = params[:coupon][:store_name].split.each {|w| w.capitalize!}.join(" ")
   end
 
   def all_coupon_params_filled?
