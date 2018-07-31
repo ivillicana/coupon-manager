@@ -80,10 +80,6 @@ class CouponsController < ApplicationController
     params.require(:coupon).permit(:coupon_code, :expiration_date, :offer_description, :item,  :store_id, :store_name)
   end
 
-  def all_coupon_params_filled?
-    coupon_params.to_h.all? { |k, v| !v.empty?}
-  end
-
   def find_coupon
     @coupon = Coupon.find_by(id: params[:id])
   end
