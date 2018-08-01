@@ -2,11 +2,11 @@
 A web application built on the Ruby on Rails framework that allows users to share store coupons.
 
 ## Install Instructions
--Fork and clone the github repo.
--Run `bundle install`
--Run `rake db:migrate`
--Run `rake db:seed` to include seeded users, coupons, and stores
--To run a local server, use `rails s`
+- Fork and clone the github repo.
+- Run `bundle install`
+- Run `rake db:migrate`
+- Run `rake db:seed` to include seeded users, coupons, and stores
+- To run a local server, use `rails s`
 
 ## Contributing
 
