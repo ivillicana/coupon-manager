@@ -26,6 +26,16 @@ class UsersController < ApplicationController
     
   end
 
+  def destroy
+    if current_user == User.find_by(id: params[:id])
+      User.find_by(id: session[:user_id]).destroy
+      session.delete :user_id
+      return redirect_to root_path, notice: "Account successfully deleted"
+    else
+      redirect_to root_path, alert: "You are not authorized to delete this account"
+    end
+  end
+
   private
 
   def user_params
