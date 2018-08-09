@@ -32,3 +32,7 @@ Coupon.create(
   "offer_description"=>"Free Starbucks coffee bag",
   "store_name"=>"Target",
   "item"=>"Starbucks")
+
+  UserCoupon.create(user_id: 1, coupon_id: 1)
+  UserCoupon.create(user_id: 1, coupon_id: 2)
+  UserCoupon.create(user_id: 2, coupon_id: 3)

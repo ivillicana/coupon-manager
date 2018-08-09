@@ -3,6 +3,10 @@ class UsersController < ApplicationController
   before_action :redirect_if_logged_in, only: [:new, :create]
   before_action :current_user, only: [:show, :destroy]
 
+  def index
+    @users = User.most_coupons
+  end
+
   def new
     @user = User.new
   end

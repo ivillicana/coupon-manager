@@ -13,4 +13,8 @@ class User < ApplicationRecord
     self.name = self.name.split.each {|w| w.capitalize!}.join(" ")
     self.email = self.email.downcase
   end
+
+  def self.most_coupons
+    User.joins(:user_coupons).group(:name).order('COUNT(user_coupons.coupon_id) DESC')
+  end
 end
