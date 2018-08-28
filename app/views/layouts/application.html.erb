@@ -28,8 +28,8 @@
           <li class="nav-item">
             <%= link_to "Stores", stores_path, class: "nav-link" %>
           </li>
-          <li class="nav-item" id="coupons-nav-button">
-            <%= link_to "Coupons", coupons_path, class: "nav-link" %>
+          <li class="nav-item">
+            <%= link_to "Coupons", coupons_path, class: "nav-link", id: "coupons-nav-button" %>
           </li>
           <li class="nav-item">
             <%= link_to "My Profile", user_path(current_user.id), class: "nav-link" %>
