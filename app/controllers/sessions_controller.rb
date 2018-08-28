@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
     return redirect_to login_path, alert: "Unable to sign in" unless @user
 
     session[:user_id] = @user.id
-    redirect_to user_path(@user), notice: "Welcome #{@user.name}"
+    redirect_to root_path, notice: "Welcome #{@user.name}"
   end
 
   def create_from_facebook
