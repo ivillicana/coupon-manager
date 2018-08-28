@@ -26,13 +26,13 @@
           </li>
         <% else %>
           <li class="nav-item">
-            <%= link_to "Stores", stores_path, class: "nav-link" %>
+            <%= link_to "Stores", stores_path, class: "nav-link", id: "stores-nav-button" %>
           </li>
           <li class="nav-item">
             <%= link_to "Coupons", coupons_path, class: "nav-link", id: "coupons-nav-button" %>
           </li>
           <li class="nav-item">
-            <%= link_to "My Profile", user_path(current_user.id), class: "nav-link" %>
+            <%= link_to "My Profile", user_path(current_user.id), class: "nav-link", id: "profile-nav-button" %>
           </li>
           <li class="nav-item">
             <%= link_to "Log Out", logout_path, method: :post, class: "nav-link" %>
