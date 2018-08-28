@@ -12,9 +12,17 @@ function loadCoupons() {
   
 }
 
+function loadStores() {
+
+}
+
 function attachEventListeners() {
   $('#coupons-nav-button').on('click', function (e){
     e.preventDefault();
     loadCoupons();
+  })
+  $('#stores-nav-button').on('click', function (e){
+    e.preventDefault();
+    loadStores();
   })
 }
