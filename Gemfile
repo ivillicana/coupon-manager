@@ -42,6 +42,7 @@ gem 'thin'
 gem 'bootstrap'
 gem 'jquery-rails'
 gem 'active_model_serializers'
+gem 'handlebars_assets'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
