@@ -16,7 +16,8 @@ class CouponsController < ApplicationController
       sort_by_expiration
     else
       @coupons = Coupon.by_item_alphabetically
-    end   
+    end  
+     render json: @coupons
   end
 
   def new
@@ -36,6 +37,7 @@ class CouponsController < ApplicationController
   end
 
   def show
+    
   end
 
   def edit
