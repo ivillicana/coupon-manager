@@ -3,7 +3,7 @@ $(function(){
 })
 
 
-function loadCouponsTemplate() {
+function loadCoupons() {
   $.get('/coupons', (coupons) => {
     var couponsHTML = HandlebarsTemplates['coupons_template'](coupons)
     $('#display').html(couponsHTML)
@@ -15,6 +15,6 @@ function loadCouponsTemplate() {
 function attachEventListeners() {
   $('#coupons-nav-button').on('click', function (e){
     e.preventDefault();
-    loadCouponsTemplate();
+    loadCoupons();
   })
 }
