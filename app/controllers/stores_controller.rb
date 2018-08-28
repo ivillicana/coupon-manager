@@ -4,6 +4,7 @@ class StoresController < ApplicationController
 
   def index
     @stores = Store.order(:name)
+    render json: @stores
   end
 
   def show
