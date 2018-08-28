@@ -3,9 +3,9 @@
   <ul class="list-unstyled mb-5">
     <h1 class="h4 text-left"><a href="/coupons/{{id}}" data-couponId="coupon-{{id}}">{{item}}</a></h1>
     <ul class="list-unstyled text-left">
-      
+      <li class="h6"><strong>{{ store.name }}</strong></li>
       <li>{{ offer_description }}</li>
-      <li>{{ expiration_date }}</li>
+      <li>Expires: {{ expiration_date }}</li>
     </ul>
   </ul>
 {{/each }}
