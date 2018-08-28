@@ -1,0 +1,11 @@
+<h1 class="h2 mb-3">Coupons</h1>
+{{#each this}}
+  <ul class="list-unstyled mb-5">
+    <h1 class="h4 text-left"><a href="/coupons/{{id}}" data-couponId="coupon-{{id}}">{{item}}</a></h1>
+    <ul class="list-unstyled text-left">
+      
+      <li>{{ offer_description }}</li>
+      <li>{{ expiration_date }}</li>
+    </ul>
+  </ul>
+{{/each }}
