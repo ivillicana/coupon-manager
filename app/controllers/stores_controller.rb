@@ -8,7 +8,7 @@ class StoresController < ApplicationController
   end
 
   def show
-    
+    render json: @store
   end
 
   def most_coupons
