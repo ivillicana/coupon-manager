@@ -27,7 +27,7 @@ class UsersController < ApplicationController
     elsif @user.id != session[:user_id]
       return redirect_to user_path(session[:user_id]), alert: "You do not have access that user's profile"
     end
-    
+    render json: @user
   end
 
   def destroy
