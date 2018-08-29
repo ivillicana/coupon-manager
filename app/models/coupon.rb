@@ -1,9 +1,11 @@
 class Coupon < ApplicationRecord
+  attr_accessor :expires_in
   belongs_to :store
   has_many :user_coupons, dependent: :destroy
   has_many :users, through: :user_coupons
   
   before_save :stylize_attributes
+  after_find :expiration_countdown
   validates :item, :coupon_code, :offer_description, :expiration_date, :store_id, presence: true
   validates :coupon_code, format: {with: /\A[^\s]+\z/, message: "must not have spaces"}
 
@@ -37,12 +39,12 @@ class Coupon < ApplicationRecord
 
   def expiration_countdown
     if self.expiration_date == Date.today
-      "Expires today!"
+      @expires_in = "Expires today!"
     elsif self.expiration_date < Date.today
-      "Sorry... this coupon has expired"
+      @expires_in = "Sorry... this coupon has expired"
     else
       difference_days = (self.expiration_date - Date.today).to_i
-      "Expires in #{difference_days} #{"day".pluralize(difference_days)}"
+      @expires_in = "Expires in #{difference_days} #{"day".pluralize(difference_days)}"
     end
   end
 
