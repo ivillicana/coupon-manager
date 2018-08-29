@@ -34,7 +34,6 @@ function loadStores() {
       loadStore(this);
     })
     $('.store-coupons-link').on('click', function(e){
-      e.preventDefault();
       previewStoreCoupons(this);
     })
   })
@@ -52,7 +51,14 @@ function loadStore(store) {
 }
 
 function previewStoreCoupons(store) {
-  debugger;
+  $.get(`/stores/${store.dataset.storeid}`, (storeData) => {
+    var couponsHTML = HandlebarsTemplates['store_coupons_template'](storeData)
+    $(`#store-coupons-${store.dataset.storeid}`).html(couponsHTML)
+    $('.coupon-link').on('click', function(e){
+      e.preventDefault();
+      loadCoupon(this);
+    })
+  })
 }
 
 function attachEventListeners() {
