@@ -11,16 +11,16 @@
     <% end %> -->
   </div>
 
-  <!-- <div class="container-list" id="saved-coupons">
+  <div class="container-list" id="saved-coupons">
     <h3 class="text-left mb-3">My Saved Coupons</h3>
-    <% current_user.coupons.each do |coupon| %>
-      <h4><%= link_to coupon.item, coupon_path(coupon) %></h4>
+    {{#each coupons}}
+      <h4><a href="#" class="coupon-link" data-couponId="{{id}}">{{item}}</a></h4>
       <ul class="list-unstyled">
-        <li><%= coupon.store_name %></li>
-        <li><%= coupon.expiration_countdown %></li>
+        <li>{{ store_name }}</li>
+        <li>{{expires_in}}</li>
       </ul>
-    <% end %>
-  </div> -->
+    {{/each}}
+  </div>
 
   <!-- <% if logged_in? %>
     <footer class="footer">
