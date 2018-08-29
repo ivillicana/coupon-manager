@@ -63,7 +63,8 @@ function previewStoreCoupons(store) {
 
 function loadUserProfile(userLink) {
   $.get(`${userLink.href}`, function(user){
-    debugger;
+    var userHTML = HandlebarsTemplates['user_template'](user)
+    $('#display').html(userHTML)
   })
 }
 
