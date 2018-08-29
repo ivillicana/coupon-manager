@@ -37,7 +37,7 @@ class CouponsController < ApplicationController
   end
 
   def show
-
+    render json: @coupon
   end
 
   def edit
