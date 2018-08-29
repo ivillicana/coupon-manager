@@ -61,6 +61,12 @@ function previewStoreCoupons(store) {
   })
 }
 
+function loadUserProfile(userLink) {
+  $.get(`${userLink.href}`, function(user){
+    debugger;
+  })
+}
+
 function attachEventListeners() {
   $('#coupons-nav-button').on('click', function (e){
     e.preventDefault();
@@ -69,5 +75,9 @@ function attachEventListeners() {
   $('#stores-nav-button').on('click', function (e){
     e.preventDefault();
     loadStores();
+  })
+  $('#profile-nav-button').on('click', function(e){
+    e.preventDefault();
+    loadUserProfile(this);
   })
 }
