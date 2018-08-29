@@ -33,6 +33,10 @@ function loadStores() {
       e.preventDefault();
       loadStore(this);
     })
+    $('.store-coupons-link').on('click', function(e){
+      e.preventDefault();
+      previewStoreCoupons(this);
+    })
   })
 }
 
@@ -45,6 +49,10 @@ function loadStore(store) {
       loadCoupon(this);
     })
   })
+}
+
+function previewStoreCoupons(store) {
+  debugger;
 }
 
 function attachEventListeners() {
