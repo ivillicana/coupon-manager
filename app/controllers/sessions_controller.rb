@@ -25,7 +25,7 @@ class SessionsController < ApplicationController
     return redirect_to login_path, alert: "A user already exists with Facebook email that was used to attempt log in. Please log in directly with email." unless @user.id
     
     session[:user_id] = @user.id
-    redirect_to user_path(@user), notice: "Welcome #{@user.name}"
+    redirect_to root_path, notice: "Welcome #{@user.name}"
   end
 
   def destroy
