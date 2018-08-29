@@ -1,4 +1,4 @@
-<div class="container text-center">
+<div class="container text-center mb-5">
     <h3>{{ name }}</h3>
     <p>{{ email }}</p>
     {{#if image }}
@@ -9,13 +9,13 @@
     <!-- <%= form_tag users_path, method: :get, class: "form-signin login-2"  do %>
         <%= submit_tag 'Users with Most Coupons', class: "btn btn-sm btn-secondary btn-block mb-5" %>
     <% end %> -->
-  </div>
+</div>
 
   <div class="container-list" id="saved-coupons">
     <h3 class="text-left mb-3">My Saved Coupons</h3>
     {{#each coupons}}
       <h4><a href="#" class="coupon-link" data-couponId="{{id}}">{{item}}</a></h4>
-      <ul class="list-unstyled">
+      <ul class="list-unstyled mb-5">
         <li>{{ store_name }}</li>
         <li>{{expires_in}}</li>
       </ul>

@@ -54,10 +54,7 @@ function previewStoreCoupons(store) {
   $.get(`/stores/${store.dataset.storeid}`, (storeData) => {
     var couponsHTML = HandlebarsTemplates['store_coupons_template'](storeData)
     $(`#store-coupons-${store.dataset.storeid}`).html(couponsHTML)
-    $('.coupon-link').on('click', function(e){
-      e.preventDefault();
-      loadCoupon(this);
-    })
+    addCouponLinkListener();
   })
 }
 
@@ -65,6 +62,14 @@ function loadUserProfile(userLink) {
   $.get(`${userLink.href}`, function(user){
     var userHTML = HandlebarsTemplates['user_template'](user)
     $('#display').html(userHTML)
+    addCouponLinkListener();
+  })
+}
+
+function addCouponLinkListener() {
+  $('.coupon-link').on('click', function(e){
+    e.preventDefault();
+    loadCoupon(this);
   })
 }
 
