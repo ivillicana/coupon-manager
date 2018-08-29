@@ -1,0 +1,18 @@
+<div class="text-center">
+  <h1 class="h1 mb-3">{{name}}</h1>
+  <!-- <%= form_tag new_store_coupon_path(@store), method: :get, class: "form-signin login-2"  do %>
+    <%= submit_tag "New #{@store.name} Coupon", class: "btn btn-sm btn-primary btn-block mb-5" %>
+  <% end %> -->
+</div>
+
+
+<div class="text-center container-list">
+  {{#each coupons}}
+    <ul class="list-unstyled mb-5">
+      <h1 class="h4 text-left"><a href="/coupons/{{id}}" class="coupon-link" data-couponId="{{id}}">{{item}}</a></h1>
+      <ul class="list-unstyled text-left">
+        <li>{{ offer_description }}</li>
+      </ul>
+    </ul>
+  {{/each}}
+</div>

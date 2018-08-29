@@ -1,0 +1,32 @@
+<div class="text-center"> 
+  <h1 class="h1 mb-3">Coupon</h1>
+  <table style="width:70%" class="mb-4 form-signin">
+    <tr>
+      <th>Item</th>
+      <td>{{ item }}</td>
+    </tr>
+    <tr>
+      <th>Store</th>
+      <td><a href="/stores/{{ store.id }}" data-storeId="{{ store.id }}" class="store-link">{{ store.name }}</a></td>
+    </tr>
+    <tr>
+      <th>Code</th>
+      <td>{{ coupon_code }}</td>
+    </tr>
+    <tr>
+      <th>Description</th>
+      <td>{{ offer_description }}</td>
+    </tr>
+    <tr>
+      <th>Expires</th>
+      <td>{{ expiration_date }}</td>
+    </tr>
+  </table>
+
+  <!-- <%= form_tag edit_store_coupon_path(@coupon.store, @coupon), method: :get, class: "form-signin login-2" do %>
+    <%= submit_tag 'Update Coupon', class: "btn btn-md btn-primary btn-block mb-2" %>
+  <% end %>
+
+  <%= save_or_delete_from_profile(@coupon)%> -->
+  
+</div>
