@@ -36,6 +36,33 @@ function loadCoupon(coupon) {
     var couponHTML = HandlebarsTemplates['coupon_template'](data)
     $('#display').html(couponHTML);
     addStoreLinkListener();
+    $('#update-coupon').on('click', function(e){
+      e.preventDefault();
+      updateCouponForm(this);
+    })
+  })
+}
+
+function updateCouponForm(form) {
+  $.get(`/coupons/${form.dataset.couponid}/edit`, function(response){
+    $('#display').html(response);
+    $(`#edit_coupon_${form.dataset.couponid}`).on('submit', function(e){
+      e.preventDefault();
+      $.ajax({
+        url: this.action,
+        data: $(this).serialize(),
+        type: ($(`#edit_coupon_${form.dataset.couponid} input[name='_method']`).val() || this.method)
+      })
+      .done(function(data){
+        var couponHTML = HandlebarsTemplates['coupon_template'](data)
+        $('#display').html(couponHTML);
+        addStoreLinkListener();
+        $('#update-coupon').on('click', function(e){
+          e.preventDefault();
+          updateCouponForm(this);
+        })
+      })
+    })
   })
 }
 
