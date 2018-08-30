@@ -25,6 +25,7 @@ class CouponsController < ApplicationController
       return redirect_to stores_path, alert: "Store not found"
     else
       @coupon = Coupon.new(store_id: params[:store_id])
+      render "new", layout: false
     end
   end
 
