@@ -7,10 +7,7 @@ function loadCoupons() {
   $.get('/coupons', (coupons) => {
     var couponsHTML = HandlebarsTemplates['coupons_template'](coupons)
     $('#display').html(couponsHTML)
-    $('.coupon-link').on('click', function(e){
-      e.preventDefault();
-      loadCoupon(this);
-    })
+    addCouponLinkListener();
     $('#new-coupon-link').on('click', function(e){
       e.preventDefault();
       newCouponForm();
@@ -22,10 +19,7 @@ function loadCoupon(coupon) {
   $.get(`/coupons/${coupon.dataset.couponid}`, (data) => {
     var couponHTML = HandlebarsTemplates['coupon_template'](data)
     $('#display').html(couponHTML);
-    $('.store-link').on('click', function(e){
-      e.preventDefault();
-      loadStore(this);
-    })
+    addStoreLinkListener();
   })
 }
 
@@ -49,20 +43,14 @@ function createNewCoupon(couponFormData){
 function loadNewCoupon(coupon) {
   var couponHTML = HandlebarsTemplates['coupon_template'](coupon)
     $('#display').html(couponHTML);
-    $('.store-link').on('click', function(e){
-      e.preventDefault();
-      loadStore(this);
-    })
+    addStoreLinkListener();
 }
 
 function loadStores() {
   $.get('/stores', (stores) => {
     var storesHTML = HandlebarsTemplates['stores_template'](stores)
     $('#display').html(storesHTML)
-    $('.store-link').on('click', function(e){
-      e.preventDefault();
-      loadStore(this);
-    })
+    addStoreLinkListener();
     $('.store-coupons-link').on('click', function(e){
       previewStoreCoupons(this);
     })
@@ -73,10 +61,7 @@ function loadStore(store) {
   $.get(`/stores/${store.dataset.storeid}`, (data) => {
     var storeHTML = HandlebarsTemplates['store_template'](data)
     $('#display').html(storeHTML);
-    $('.coupon-link').on('click', function(e){
-      e.preventDefault();
-      loadCoupon(this);
-    })
+    addCouponLinkListener();
   })
 }
 
@@ -100,6 +85,13 @@ function addCouponLinkListener() {
   $('.coupon-link').on('click', function(e){
     e.preventDefault();
     loadCoupon(this);
+  })
+}
+
+function addStoreLinkListener(){
+  $('.store-link').on('click', function(e){
+    e.preventDefault();
+    loadStore(this);
   })
 }
 
