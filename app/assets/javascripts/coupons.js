@@ -32,11 +32,18 @@ function loadCoupon(coupon) {
 function newCouponForm() {
   $.get('/coupons/new', function(form) {
     $('#display').html(form);
-    $("input[value='Create Coupon']").on('click', function(e){
+    $("#new_coupon").on('submit', function(e){
       e.preventDefault();
-      createNewCoupon();
+      createNewCoupon($(this).serialize());
     })
   })
+}
+
+function createNewCoupon(couponFormData){
+  $.post('/coupons', couponFormData)
+    .done(function (response){
+      loadNewCoupon(response);
+    })
 }
 
 function loadStores() {
