@@ -11,6 +11,10 @@ function loadCoupons() {
       e.preventDefault();
       loadCoupon(this);
     })
+    $('#new-coupon-link').on('click', function(e){
+      e.preventDefault();
+      newCouponForm();
+    })
   })
 }
 
@@ -22,6 +26,12 @@ function loadCoupon(coupon) {
       e.preventDefault();
       loadStore(this);
     })
+  })
+}
+
+function newCouponForm() {
+  $.get('/coupons/new', function(form) {
+    $('#display').html(form);
   })
 }
 
