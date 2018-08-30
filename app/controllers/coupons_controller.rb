@@ -32,9 +32,11 @@ class CouponsController < ApplicationController
   def create
     @coupon = Coupon.new(coupon_params)
     if @coupon.save
-      return redirect_to coupon_path(@coupon), notice: "Coupon succesfully created"
+      flash[:notice] = "Coupon succesfully created"
+      render json: @coupon
+    else
+      render :new
     end
-    render :new
   end
 
   def show
