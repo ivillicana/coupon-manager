@@ -20,6 +20,11 @@ class CouponsController < ApplicationController
      render json: @coupons
   end
 
+  def sort_form
+    @stores = Store.all
+    render '_sort_coupons', layout: false
+  end
+
   def new
     if params[:store_id] && !Store.exists?(params[:store_id])
       return redirect_to stores_path, alert: "Store not found"
