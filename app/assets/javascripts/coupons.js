@@ -46,6 +46,15 @@ function createNewCoupon(couponFormData){
     })
 }
 
+function loadNewCoupon(coupon) {
+  var couponHTML = HandlebarsTemplates['coupon_template'](coupon)
+    $('#display').html(couponHTML);
+    $('.store-link').on('click', function(e){
+      e.preventDefault();
+      loadStore(this);
+    })
+}
+
 function loadStores() {
   $.get('/stores', (stores) => {
     var storesHTML = HandlebarsTemplates['stores_template'](stores)
