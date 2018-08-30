@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'application#home'
   get '/stores/most_coupons', to: 'stores#most_coupons'
+  get '/coupons/sort_form', to: 'coupons#sort_form'
   
   resources :coupons
 
