@@ -52,19 +52,21 @@ class CouponsController < ApplicationController
     if params[:store_id]
       store = Store.find_by(id: params[:store_id])
       if store.nil?
-          redirect_to stores_path, alert: "Store not found"
+        redirect_to stores_path, alert: "Store not found"
       else
         @coupon = store.coupons.find_by(id: params[:id])
         redirect_to store_coupons_path(store), alert: "Coupon not found" if @coupon.nil?
       end
     end
+    render 'edit', layout: false
   end
 
   def update
     if @coupon.update(coupon_params)
-      redirect_to coupon_path(@coupon), notice: "Successfully updated coupon"
+      flash[:notice] = "Successfully updated coupon"
+      render json: @coupon 
     else
-      render :edit
+      render :edit, layout: false
     end
   end
 
