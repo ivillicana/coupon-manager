@@ -3,16 +3,32 @@ $(document).on('turbolinks:load', function() {
 });
 
 
-function loadCoupons() {
-  $.get('/coupons', (coupons) => {
-    var couponsHTML = HandlebarsTemplates['coupons_template'](coupons)
-    $('#display').html(couponsHTML)
-    addCouponLinkListener();
-    $('#new-coupon-link').on('click', function(e){
-      e.preventDefault();
-      newCouponForm();
+function loadCoupons(data = null) {
+  
+  if (data){
+    var form = data;
+  } else {
+    var form = $(this).serialize();
+  }
+
+  //get unsorted json representation of coupons
+  $.get('/coupons', form)
+    .done(function(coupons){
+      var couponsListHTML = HandlebarsTemplates['coupons_template'](coupons)
+      //get sort coupons form
+      $.get('/coupons/sort_form', function(formHTML) {
+        $('#display').html(formHTML + couponsListHTML);
+        $('#sort-coupons').on('submit', function (e){
+          e.preventDefault();
+          loadCoupons($(this).serialize());
+        })
+        addCouponLinkListener();
+        $('#new-coupon-link').on('click', function(e){
+          e.preventDefault();
+          newCouponForm();
+        })
+      })
     })
-  })
 }
 
 function loadCoupon(coupon) {
