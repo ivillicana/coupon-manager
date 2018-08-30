@@ -32,6 +32,10 @@ function loadCoupon(coupon) {
 function newCouponForm() {
   $.get('/coupons/new', function(form) {
     $('#display').html(form);
+    $("input[value='Create Coupon']").on('click', function(e){
+      e.preventDefault();
+      createNewCoupon();
+    })
   })
 }
 
