@@ -1,0 +1,14 @@
+<div class="text-center container-list">
+<h1 class="h2 mb-3">Coupons</h1>
+<%= form_tag coupons_path, method: :get, class: "form-signin login-2", id: "sort-coupons" do %>
+    
+      <h5 class="h6">Sort/Filter Coupons:</h5>
+    
+      <%= select_tag "store_id", options_from_collection_for_select(@stores, "id", "name"), include_blank: true, class: "form-control" %>
+    
+      <%= select_tag "date", options_for_select(["Expiring Soon", "Expiring Later"]), include_blank: true, class: "form-control"%>
+    
+      <%= submit_tag "Sort", class: "btn btn-md btn-secondary btn-block"%>
+  <% end %>
+
+</div>
