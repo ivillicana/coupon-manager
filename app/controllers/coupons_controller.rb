@@ -77,7 +77,7 @@ class CouponsController < ApplicationController
 
   def save_to_profile
     current_user.coupons << @coupon
-    redirect_to coupon_path(@coupon), notice: "Saved coupon to your profile"
+    flash[:notice] = "Saved coupon to your profile"
   end
 
   def delete_from_profile
