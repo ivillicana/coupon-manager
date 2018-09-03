@@ -3,6 +3,7 @@ $(document).on('turbolinks:load', function() {
   var couponsJSONObjects;
   var userObject;
   $.get('/coupons').done((data) => {couponsJSONObjects = data})
+  
 });
 
 
@@ -13,7 +14,7 @@ function loadCoupons(data = null) {
   } else {
     var form = $(this).serialize();
   }
-
+  $.get($('#profile-nav-button')[0].href).done((data) => {userObject = data})
   //get unsorted json representation of coupons
   $.get('/coupons', form)
     .done(function(coupons){
@@ -79,11 +80,25 @@ function loadNextCoupon(coupon) {
     $('#delete-from-profile').on('click', function(){
       deleteFromProfile(this);
     })
+
+    $('#save-to-profile').on('click', function () {
+      saveToProfile(this);
+    })
 }
 
 function deleteFromProfile(couponButton) {
   $.ajax({
     url: `/coupons/${couponButton.dataset.couponid}/delete_from_profile`,
+    type: 'POST'
+  })
+  .done(function(data) {
+    loadCoupons();
+  })
+}
+
+function saveToProfile(couponButton) {
+  $.ajax({
+    url: `/coupons/${couponButton.dataset.couponid}/save_to_profile`,
     type: 'POST'
   })
   .done(function(data) {
@@ -102,13 +117,7 @@ function updateCouponForm(form) {
         type: ($(`#edit_coupon_${form.dataset.couponid} input[name='_method']`).val() || this.method)
       })
       .done(function(data){
-        var couponHTML = HandlebarsTemplates['coupon_template'](data)
-        $('#display').html(couponHTML);
-        addStoreLinkListener();
-        $('#update-coupon').on('click', function(e){
-          e.preventDefault();
-          updateCouponForm(this);
-        })
+        loadCoupon(form);
       })
     })
   })
