@@ -12,6 +12,7 @@
 //
 //= require jquery3
 //= require jquery_ujs
+//= handlebars_helpers
 //= require coupons
 //= require rails-ujs
 //= require activestorage
