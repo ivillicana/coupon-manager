@@ -83,7 +83,7 @@ class CouponsController < ApplicationController
   def delete_from_profile
     user_coupon = current_user.user_coupons.where(coupon_id: @coupon.id)
     UserCoupon.destroy(user_coupon.ids)
-    redirect_to coupon_path(@coupon), notice: "Deleted coupon from your profile"
+    flash[:notice] = "Deleted coupon from your profile"
   end
 
   private
