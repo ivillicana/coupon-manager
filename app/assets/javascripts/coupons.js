@@ -1,6 +1,7 @@
 $(document).on('turbolinks:load', function() {
   attachEventListeners();
   var couponsJSONObjects;
+  var userObject;
   $.get('/coupons').done((data) => {couponsJSONObjects = data})
 });
 
@@ -74,6 +75,20 @@ function loadNextCoupon(coupon) {
         alert("No other coupons")
       }
     })
+
+    $('#delete-from-profile').on('click', function(){
+      deleteFromProfile(this);
+    })
+}
+
+function deleteFromProfile(couponButton) {
+  $.ajax({
+    url: `/coupons/${couponButton.dataset.couponid}/delete_from_profile`,
+    type: 'POST'
+  })
+  .done(function(data) {
+    loadCoupons();
+  })
 }
 
 function updateCouponForm(form) {
@@ -151,6 +166,7 @@ function previewStoreCoupons(store) {
 
 function loadUserProfile(userLink) {
   $.get(`${userLink.href}`, function(user){
+    userObject = user
     var userHTML = HandlebarsTemplates['user_template'](user)
     $('#display').html(userHTML)
     addCouponLinkListener();
