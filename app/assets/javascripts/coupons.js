@@ -1,10 +1,12 @@
 $(document).on('turbolinks:load', function() {
   attachEventListeners();
+  var couponsJSONObjects;
+  $.get('/coupons').done((data) => {couponsJSONObjects = data})
 });
 
 
 function loadCoupons(data = null) {
-  
+  //the data argument can include form data from the sort/filter options that are rendered
   if (data){
     var form = data;
   } else {
@@ -14,6 +16,7 @@ function loadCoupons(data = null) {
   //get unsorted json representation of coupons
   $.get('/coupons', form)
     .done(function(coupons){
+      couponsJSONObjects = coupons;
       var couponsListHTML = HandlebarsTemplates['coupons_template'](coupons)
       //get sort coupons form
       $.get('/coupons/sort_form', function(formHTML) {
@@ -40,7 +43,39 @@ function loadCoupon(coupon) {
       e.preventDefault();
       updateCouponForm(this);
     })
+    $('#next-coupon').on('click', function(e){
+      var currentCouponId = parseInt(this.dataset.couponid);
+      var foundCoupon = couponsJSONObjects.find(function(element) {
+        return element.id === currentCouponId;
+      });
+      var idx = couponsJSONObjects.indexOf(foundCoupon)
+      if (idx < couponsJSONObjects.length - 1) { 
+        loadNextCoupon(couponsJSONObjects[idx+1]);
+      } else {
+        alert("No other coupons")
+      }
+    })
   })
+}
+
+function loadNextCoupon(coupon) {
+    var couponHTML = HandlebarsTemplates['coupon_template'](coupon)
+    $('#display').html(couponHTML);
+    addStoreLinkListener();
+    $('#update-coupon').on('click', function(e){
+      e.preventDefault();
+      updateCouponForm(this);
+    })
+    $('#next-coupon').on('click', function(e){
+      var currentCouponId = parseInt(this.dataset.couponid);
+      var foundCoupon = couponsJSONObjects.find(function(element) {
+        return element.id === currentCouponId;
+      });
+      var idx = couponsJSONObjects.indexOf(foundCoupon)
+      if (idx < couponsJSONObjects.length - 1) { 
+        loadNextCoupon(couponsJSONObjects[idx+1]);
+      }
+    })
 }
 
 function updateCouponForm(form) {
