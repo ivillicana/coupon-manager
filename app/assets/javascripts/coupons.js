@@ -36,25 +36,7 @@ function loadCoupons(data = null) {
 
 function loadCoupon(coupon) {
   $.get(`/coupons/${coupon.dataset.couponid}`, (data) => {
-    var couponHTML = HandlebarsTemplates['coupon_template'](data)
-    $('#display').html(couponHTML);
-    addStoreLinkListener();
-    $('#update-coupon').on('click', function(e){
-      e.preventDefault();
-      updateCouponForm(this);
-    })
-    $('#next-coupon').on('click', function(e){
-      var currentCouponId = parseInt(this.dataset.couponid);
-      var foundCoupon = couponsJSONObjects.find(function(element) {
-        return element.id === currentCouponId;
-      });
-      var idx = couponsJSONObjects.indexOf(foundCoupon)
-      if (idx < couponsJSONObjects.length - 1) { 
-        loadNextCoupon(couponsJSONObjects[idx+1]);
-      } else {
-        alert("No other coupons")
-      }
-    })
+    loadNextCoupon(data);
   })
 }
 
@@ -74,6 +56,22 @@ function loadNextCoupon(coupon) {
       var idx = couponsJSONObjects.indexOf(foundCoupon)
       if (idx < couponsJSONObjects.length - 1) { 
         loadNextCoupon(couponsJSONObjects[idx+1]);
+      } else {
+        $('#next-coupon').remove();
+        alert("No other coupons")
+      }
+    })
+    $('#previous-coupon').on('click', function(e){
+      var currentCouponId = parseInt(this.dataset.couponid);
+      var foundCoupon = couponsJSONObjects.find(function(element) {
+        return element.id === currentCouponId;
+      });
+      var idx = couponsJSONObjects.indexOf(foundCoupon)
+      if (idx > 0) { 
+        loadNextCoupon(couponsJSONObjects[idx-1]);
+      } else {
+        $('#previous-coupon').remove();
+        alert("No other coupons")
       }
     })
 }
