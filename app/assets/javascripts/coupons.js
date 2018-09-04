@@ -151,7 +151,6 @@ function newStoreCoupon(storeButton) {
 function createNewCoupon(couponFormData){
   $.post('/coupons', couponFormData)
     .done(function (response){
-      debugger;
       loadNextCoupon(response);
     })
 }
@@ -195,6 +194,7 @@ function loadUserProfile(userLink) {
     var userHTML = HandlebarsTemplates['user_template'](user)
     $('#display').html(userHTML)
     addCouponLinkListener();
+    $.get('/coupons').done((data) => {couponsJSONObjects = data})
   })
 }
 
