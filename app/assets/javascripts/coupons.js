@@ -92,7 +92,10 @@ function deleteFromProfile(couponButton) {
     type: 'POST'
   })
   .done(function(data) {
-    loadCoupons();
+    $.get($('#profile-nav-button')[0].href).done((user) => {
+      userObject = user
+      loadCoupon(couponButton);
+    })
   })
 }
 
@@ -102,7 +105,10 @@ function saveToProfile(couponButton) {
     type: 'POST'
   })
   .done(function(data) {
-    loadCoupons();
+    $.get($('#profile-nav-button')[0].href).done((user) => {
+      userObject = user
+      loadCoupon(couponButton);
+    })
   })
 }
 
