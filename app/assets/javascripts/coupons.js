@@ -3,7 +3,6 @@ $(document).on('turbolinks:load', function() {
   var couponsJSONObjects;
   var userObject;
   $.get('/coupons').done((data) => {couponsJSONObjects = data})
-  
 });
 
 
@@ -139,20 +138,28 @@ function newCouponForm() {
   })
 }
 
+function newStoreCoupon(storeButton) {
+  $.get(`/stores/${storeButton.dataset.storeid}/coupons/new`, function(form){
+    $('#display').html(form);
+    $("#new_coupon").on('submit', function(e){
+      e.preventDefault();
+      createNewCoupon($(this).serialize());
+    })
+  })
+}
+
 function createNewCoupon(couponFormData){
   $.post('/coupons', couponFormData)
     .done(function (response){
-      loadNewCoupon(response);
+      debugger;
+      loadNextCoupon(response);
     })
 }
 
-function loadNewCoupon(coupon) {
-  var couponHTML = HandlebarsTemplates['coupon_template'](coupon)
-    $('#display').html(couponHTML);
-    addStoreLinkListener();
-}
-
 function loadStores() {
+  $.get($('#profile-nav-button')[0].href).done((user) => {
+    userObject = user
+  })
   $.get('/stores', (stores) => {
     var storesHTML = HandlebarsTemplates['stores_template'](stores)
     $('#display').html(storesHTML)
@@ -168,6 +175,9 @@ function loadStore(store) {
     var storeHTML = HandlebarsTemplates['store_template'](data)
     $('#display').html(storeHTML);
     addCouponLinkListener();
+    $('#new-store-coupon').on('click', function(){
+      newStoreCoupon(this);
+    })
   })
 }
 
