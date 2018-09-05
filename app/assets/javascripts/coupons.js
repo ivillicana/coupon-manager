@@ -40,8 +40,8 @@ class Store {
     this.coupons = data.coupons;
   }
 
-  formatStoreWithHandlebars() {
-    return HandlebarsTemplates['store_templtate'](this)
+  formatStoreWithHandlebars(template = 'store_template') {
+    return HandlebarsTemplates[template](this)
   }
 
   displayStoreInWindow() {
@@ -220,8 +220,8 @@ function loadStores() {
 
 function loadStore(store) {
   $.get(`/stores/${store.dataset.storeid}`, (data) => {
-    var storeHTML = HandlebarsTemplates['store_template'](data)
-    $('#display').html(storeHTML);
+    let newStore = new Store(data)
+    newStore.displayStoreInWindow();
     addCouponLinkListener();
     $('#new-store-coupon').on('click', function(){
       newStoreCoupon(this);
@@ -231,8 +231,8 @@ function loadStore(store) {
 
 function previewStoreCoupons(store) {
   $.get(`/stores/${store.dataset.storeid}`, (storeData) => {
-    var couponsHTML = HandlebarsTemplates['store_coupons_template'](storeData)
-    $(`#store-coupons-${store.dataset.storeid}`).html(couponsHTML)
+    var newStore = new Store(storeData)
+    $(`#store-coupons-${store.dataset.storeid}`).html(newStore.formatStoreWithHandlebars('store_coupons_template'))
     addCouponLinkListener();
   })
 }
