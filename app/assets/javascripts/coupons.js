@@ -33,6 +33,23 @@ class Coupon {
 
 }
 
+class Store {
+  constructor(data) {
+    this.id = data.id;
+    this.name = data.name;
+    this.coupons = data.coupons;
+  }
+
+  formatStoreWithHandlebars() {
+    return HandlebarsTemplates['store_templtate'](this)
+  }
+
+  displayStoreInWindow() {
+    $('#display').html(this.formatStoreWithHandlebars())
+  }
+
+}
+
 function loadCoupons(data = null) {
   //the data argument can include form data from the sort/filter options that are rendered
   if (data){
