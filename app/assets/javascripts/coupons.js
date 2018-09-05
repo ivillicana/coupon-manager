@@ -22,6 +22,15 @@ class Coupon {
     this.expiresIn = data.expires_in;
     this.store = data.store;
   }
+
+  formatCouponWithHandlebars() {
+    return HandlebarsTemplates['coupon_template'](this)
+  }
+
+  displayCouponInWindow() {
+    $('#display').html(this.formatCouponWithHandlebars())
+  }
+
 }
 
 function loadCoupons(data = null) {
@@ -65,8 +74,7 @@ function loadCoupon(couponLink) {
 }
 
 function loadNextCoupon(coupon) {
-    var couponHTML = HandlebarsTemplates['coupon_template'](coupon)
-    $('#display').html(couponHTML);
+    coupon.displayCouponInWindow();
     addStoreLinkListener();
     $('#update-coupon').on('click', function(e){
       e.preventDefault();
