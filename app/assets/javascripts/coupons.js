@@ -1,7 +1,8 @@
+var couponsJSONObjects = [];
+var userObject;
+
 $(document).on('turbolinks:load', function() {
   attachEventListeners();
-  var couponsJSONObjects = [];
-  var userObject;
   $.get('/coupons').done((data) => {
     data.forEach( (coupon) => { 
       let newCoupon = new Coupon(coupon); 
@@ -34,8 +35,11 @@ function loadCoupons(data = null) {
   //get unsorted json representation of coupons
   $.get('/coupons', form)
     .done(function(coupons){
-      couponsJSONObjects = coupons;
-      var couponsListHTML = HandlebarsTemplates['coupons_template'](coupons)
+      coupons.forEach( (coupon) => { 
+        let newCoupon = new Coupon(coupon); 
+        couponsJSONObjects.push(newCoupon); 
+      })
+      var couponsListHTML = HandlebarsTemplates['coupons_template'](couponsJSONObjects)
       //get sort coupons form
       $.get('/coupons/sort_form', function(formHTML) {
         $('#display').html(formHTML + couponsListHTML);
@@ -61,7 +65,6 @@ function loadCoupon(coupon) {
 
 function loadNextCoupon(coupon) {
     var couponHTML = HandlebarsTemplates['coupon_template'](coupon)
-    debugger;
     $('#display').html(couponHTML);
     addStoreLinkListener();
     $('#update-coupon').on('click', function(e){
