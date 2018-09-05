@@ -183,10 +183,9 @@ function createNewCoupon(couponFormData){
 }
 
 function loadUserProfile(userLink) {
-  $.get(`${userLink.href}`, function(user){
-    userObject = user
-    var userHTML = HandlebarsTemplates['user_template'](user)
-    $('#display').html(userHTML)
+  $.get(`${userLink.href}`, function(userData){
+    userObject = new User(userData)
+    userObject.displayUserProfile();
     addCouponLinkListener();
     getCoupons();
   })

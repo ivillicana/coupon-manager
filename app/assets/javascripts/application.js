@@ -15,6 +15,7 @@
 //= handlebars_helpers
 //= require coupons
 //= require stores
+//= require users
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
