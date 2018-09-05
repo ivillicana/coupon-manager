@@ -25,12 +25,7 @@ class Coupon {
 
 $(document).on('turbolinks:load', function() {
   attachEventListeners();
-  $.get('/coupons').done((data) => {
-    data.forEach( (coupon) => { 
-      let newCoupon = new Coupon(coupon); 
-      couponsJSONObjects.push(newCoupon); 
-    })
-  })
+  getCoupons();
 });
 
 function loadCoupons(data = null) {
@@ -193,7 +188,7 @@ function loadUserProfile(userLink) {
     var userHTML = HandlebarsTemplates['user_template'](user)
     $('#display').html(userHTML)
     addCouponLinkListener();
-    $.get('/coupons').done((data) => {couponsJSONObjects = data})
+    getCoupons();
   })
 }
 
@@ -208,6 +203,15 @@ function addStoreLinkListener(){
   $('.store-link').on('click', function(e){
     e.preventDefault();
     loadStore(this);
+  })
+}
+
+function getCoupons() {
+  $.get('/coupons').done((data) => {
+    data.forEach( (coupon) => { 
+      let newCoupon = new Coupon(coupon); 
+      couponsJSONObjects.push(newCoupon); 
+    })
   })
 }
 
