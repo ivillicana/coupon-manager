@@ -1,8 +1,13 @@
 $(document).on('turbolinks:load', function() {
   attachEventListeners();
-  var couponsJSONObjects;
+  var couponsJSONObjects = [];
   var userObject;
-  $.get('/coupons').done((data) => {couponsJSONObjects = data})
+  $.get('/coupons').done((data) => {
+    data.forEach( (coupon) => { 
+      let newCoupon = new Coupon(coupon); 
+      couponsJSONObjects.push(newCoupon); 
+    })
+  })
 });
 
 class Coupon {
@@ -50,13 +55,13 @@ function loadCoupons(data = null) {
 function loadCoupon(coupon) {
   $.get(`/coupons/${coupon.dataset.couponid}`, (data) => {
     let couponObject = new Coupon(data);
-    debugger;
-    loadNextCoupon(data);
+    loadNextCoupon(couponObject);
   })
 }
 
 function loadNextCoupon(coupon) {
     var couponHTML = HandlebarsTemplates['coupon_template'](coupon)
+    debugger;
     $('#display').html(couponHTML);
     addStoreLinkListener();
     $('#update-coupon').on('click', function(e){
