@@ -5,6 +5,18 @@ $(document).on('turbolinks:load', function() {
   $.get('/coupons').done((data) => {couponsJSONObjects = data})
 });
 
+class Coupon {
+  constructor(data) {
+    this.id = data.id;
+    this.couponCode = data.coupon_code;
+    this.offerDescription = data.offer_description;
+    this.item = data.item;
+    this.expirationDate = data.expiration_date;
+    this.storeName = data.store_name;
+    this.expiresIn = data.expires_in;
+    this.store = data.store;
+  }
+}
 
 function loadCoupons(data = null) {
   //the data argument can include form data from the sort/filter options that are rendered
@@ -37,6 +49,8 @@ function loadCoupons(data = null) {
 
 function loadCoupon(coupon) {
   $.get(`/coupons/${coupon.dataset.couponid}`, (data) => {
+    let couponObject = new Coupon(data);
+    debugger;
     loadNextCoupon(data);
   })
 }
