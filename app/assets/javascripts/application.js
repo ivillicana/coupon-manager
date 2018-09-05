@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= handlebars_helpers
 //= require coupons
+//= require stores
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
