@@ -66,14 +66,14 @@ function loadCoupons(data = null) {
     })
 }
 
-function loadCoupon(couponLink) {
+function loadCouponFromLink(couponLink) {
   $.get(`/coupons/${couponLink.dataset.couponid}`, (data) => {
     let couponObject = new Coupon(data);
-    loadNextCoupon(couponObject);
+    loadCoupon(couponObject);
   })
 }
 
-function loadNextCoupon(coupon) {
+function loadCoupon(coupon) {
     coupon.displayCouponInWindow();
     addStoreLinkListener();
     $('#update-coupon').on('click', function(e){
@@ -87,7 +87,7 @@ function loadNextCoupon(coupon) {
       });
       var idx = couponsJSONObjects.indexOf(foundCoupon)
       if (idx < couponsJSONObjects.length - 1) { 
-        loadNextCoupon(couponsJSONObjects[idx+1]);
+        loadCoupon(couponsJSONObjects[idx+1]);
       } else {
         $('#next-coupon').remove();
         alert("No other coupons")
@@ -100,7 +100,7 @@ function loadNextCoupon(coupon) {
       });
       var idx = couponsJSONObjects.indexOf(foundCoupon)
       if (idx > 0) { 
-        loadNextCoupon(couponsJSONObjects[idx-1]);
+        loadCoupon(couponsJSONObjects[idx-1]);
       } else {
         $('#previous-coupon').remove();
         alert("No other coupons")
@@ -124,7 +124,7 @@ function deleteFromProfile(couponButton) {
   .done(function(data) {
     $.get($('#profile-nav-button')[0].href).done((user) => {
       userObject = user
-      loadCoupon(couponButton);
+      loadCouponFromLink(couponButton);
     })
   })
 }
@@ -137,7 +137,7 @@ function saveToProfile(couponButton) {
   .done(function(data) {
     $.get($('#profile-nav-button')[0].href).done((user) => {
       userObject = user
-      loadCoupon(couponButton);
+      loadCouponFromLink(couponButton);
     })
   })
 }
@@ -153,7 +153,7 @@ function updateCouponForm(form) {
         type: ($(`#edit_coupon_${form.dataset.couponid} input[name='_method']`).val() || this.method)
       })
       .done(function(data){
-        loadCoupon(form);
+        loadCouponFromLink(form);
       })
     })
   })
@@ -183,7 +183,7 @@ function createNewCoupon(couponFormData){
   $.post('/coupons', couponFormData)
     .done(function (response){
       let couponObject = new Coupon(response);
-      loadNextCoupon(couponObject);
+      loadCoupon(couponObject);
     })
 }
 
@@ -233,7 +233,7 @@ function loadUserProfile(userLink) {
 function addCouponLinkListener() {
   $('.coupon-link').on('click', function(e){
     e.preventDefault();
-    loadCoupon(this);
+    loadCouponFromLink(this);
   })
 }
 
