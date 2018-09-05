@@ -1,5 +1,5 @@
 # Coupon Manager
-A web application built on the Ruby on Rails framework that allows users to share store coupons. For a brief walk-through on application use and features, view the [walk-through video](https://youtu.be/7nE_ClUDbSE).
+A web application built on the Ruby on Rails framework that allows users to share store coupons. This application also leverages JavaScript/Jquery for AJAX requests. For a brief walk-through on application use and features, view the [walk-through video](https://youtu.be/7nE_ClUDbSE).
 
 ## Install Instructions
 - Fork and clone the github repo.
