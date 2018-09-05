@@ -35,6 +35,7 @@ function loadCoupons(data = null) {
   //get unsorted json representation of coupons
   $.get('/coupons', form)
     .done(function(coupons){
+      couponsJSONObjects.length = 0;
       coupons.forEach( (coupon) => { 
         let newCoupon = new Coupon(coupon); 
         couponsJSONObjects.push(newCoupon); 
@@ -56,8 +57,8 @@ function loadCoupons(data = null) {
     })
 }
 
-function loadCoupon(coupon) {
-  $.get(`/coupons/${coupon.dataset.couponid}`, (data) => {
+function loadCoupon(couponLink) {
+  $.get(`/coupons/${couponLink.dataset.couponid}`, (data) => {
     let couponObject = new Coupon(data);
     loadNextCoupon(couponObject);
   })
@@ -173,7 +174,8 @@ function newStoreCoupon(storeButton) {
 function createNewCoupon(couponFormData){
   $.post('/coupons', couponFormData)
     .done(function (response){
-      loadNextCoupon(response);
+      let couponObject = new Coupon(response);
+      loadNextCoupon(couponObject);
     })
 }
 
