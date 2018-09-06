@@ -207,10 +207,13 @@ function addStoreLinkListener(){
 
 function getCoupons() {
   $.get('/coupons').done((data) => {
-    data.forEach( (coupon) => { 
-      let newCoupon = new Coupon(coupon); 
-      couponsJSONObjects.push(newCoupon); 
-    })
+    //Only iterate through response if it's an object/logged it
+    if (typeof(data) === "object") {
+      data.forEach( (coupon) => { 
+        let newCoupon = new Coupon(coupon); 
+        couponsJSONObjects.push(newCoupon); 
+      })
+    } 
   })
 }
 
