@@ -1,0 +1,11 @@
+.about-section {
+  background: rgb(234, 234, 234);
+}
+#welcome h1 {
+  font-size: 3em;
+}
+.about-section p {
+  font-size: 1.45em;
+  padding: 30px;
+  margin-top: 50px;
+}
