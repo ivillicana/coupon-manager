@@ -1,3 +1,5 @@
+var userObject;
+
 class User {
   constructor(data) {
     this.id = data.id;
@@ -15,4 +17,13 @@ class User {
     $('#display').html(this.formatUserWithHandlebars())
   }
 
+}
+
+function loadUserProfile(userLink) {
+  $.get(`${userLink.href}`, function(userData){
+    userObject = new User(userData)
+    userObject.displayUserProfile();
+    addCouponLinkListener();
+    getCoupons();
+  })
 }

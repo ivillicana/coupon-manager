@@ -1,5 +1,4 @@
 var couponsJSONObjects = [];
-var userObject;
 
 class Coupon {
   constructor(data) {
@@ -35,17 +34,20 @@ function loadCoupons(data = null) {
   } else {
     var form = $(this).serialize();
   }
-  $.get($('#profile-nav-button')[0].href).done((data) => {userObject = data})
-  //get unsorted json representation of coupons
+  //get user and coupons saved to user profile and add to userObject
+  $.get($('#profile-nav-button')[0].href).done((data) => userObject = new User(data) )
+  //get json representation of coupons using form sort/filter data as parameter, if applicable
   $.get('/coupons', form)
     .done(function(coupons){
+      //reset couponsJSONObjects and fill with new fetched data
       couponsJSONObjects.length = 0;
       coupons.forEach( (coupon) => { 
         let newCoupon = new Coupon(coupon); 
         couponsJSONObjects.push(newCoupon); 
       })
+      //use Handlebars template to create HTML for coupons list
       var couponsListHTML = HandlebarsTemplates['coupons_template'](couponsJSONObjects)
-      //get sort coupons form
+      //get sort/filter coupons form and attach to #display along with coupons list
       $.get('/coupons/sort_form', function(formHTML) {
         $('#display').html(formHTML + couponsListHTML);
         $('#sort-coupons').on('submit', function (e){
@@ -117,6 +119,7 @@ function deleteFromProfile(couponButton) {
     type: 'POST'
   })
   .done(function(data) {
+    //update userObject with removed coupon
     $.get($('#profile-nav-button')[0].href).done((user) => {
       userObject = user
       loadCouponFromLink(couponButton);
@@ -130,6 +133,7 @@ function saveToProfile(couponButton) {
     type: 'POST'
   })
   .done(function(data) {
+    //update user object with added coupon
     $.get($('#profile-nav-button')[0].href).done((user) => {
       userObject = user
       loadCouponFromLink(couponButton);
@@ -147,7 +151,7 @@ function updateCouponForm(form) {
         data: $(this).serialize(),
         type: ($(`#edit_coupon_${form.dataset.couponid} input[name='_method']`).val() || this.method)
       })
-      .done(function(data){
+      .done(function(){
         loadCouponFromLink(form);
       })
     })
@@ -182,15 +186,6 @@ function createNewCoupon(couponFormData){
     })
 }
 
-function loadUserProfile(userLink) {
-  $.get(`${userLink.href}`, function(userData){
-    userObject = new User(userData)
-    userObject.displayUserProfile();
-    addCouponLinkListener();
-    getCoupons();
-  })
-}
-
 function addCouponLinkListener() {
   $('.coupon-link').on('click', function(e){
     e.preventDefault();
@@ -207,9 +202,10 @@ function addStoreLinkListener(){
 
 function getCoupons() {
   $.get('/coupons').done((data) => {
-    //Only iterate through response if it's an object/logged it
+    //Only iterate through response if it's an object/logged in
     if (typeof(data) === "object") {
       data.forEach( (coupon) => { 
+        // create new Coupon objects and add to couponsJSONObjects array
         let newCoupon = new Coupon(coupon); 
         couponsJSONObjects.push(newCoupon); 
       })

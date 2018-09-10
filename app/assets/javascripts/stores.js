@@ -16,8 +16,8 @@ class Store {
 }
 
 function loadStores() {
-  $.get($('#profile-nav-button')[0].href).done((user) => {
-    userObject = user
+  $.get($('#profile-nav-button')[0].href).done((userData) => {
+    userObject = new User(userData)
   })
   $.get('/stores', (stores) => {
     var storesHTML = HandlebarsTemplates['stores_template'](stores)
