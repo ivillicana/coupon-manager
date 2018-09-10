@@ -12,11 +12,14 @@
 
 ActiveRecord::Schema.define(version: 2018_07_25_164857) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "coupons", force: :cascade do |t|
     t.string "coupon_code"
     t.date "expiration_date", null: false
     t.text "offer_description"
-    t.integer "store_id"
+    t.bigint "store_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "item"
@@ -30,8 +33,8 @@ ActiveRecord::Schema.define(version: 2018_07_25_164857) do
   end
 
   create_table "user_coupons", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "coupon_id"
+    t.bigint "user_id"
+    t.bigint "coupon_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["coupon_id"], name: "index_user_coupons_on_coupon_id"
@@ -48,4 +51,7 @@ ActiveRecord::Schema.define(version: 2018_07_25_164857) do
     t.string "uid"
   end
 
+  add_foreign_key "coupons", "stores"
+  add_foreign_key "user_coupons", "coupons"
+  add_foreign_key "user_coupons", "users"
 end
