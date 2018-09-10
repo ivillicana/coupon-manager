@@ -11,21 +11,23 @@
     <% end %> -->
 </div>
 
-  <div class="container-list" id="saved-coupons">
-    <h3 class="text-left mb-3">My Saved Coupons</h3>
-    {{#each coupons}}
-      <h4><a href="#" class="coupon-link" data-couponId="{{id}}">{{item}}</a></h4>
-      <ul class="list-unstyled mb-5">
-        <li>{{ store_name }}</li>
-        <li>{{expires_in}}</li>
-      </ul>
-    {{/each}}
-  </div>
+<div class="container-list" id="saved-coupons">
+  <h3 class="text-left mb-3">My Saved Coupons</h3>
+  {{#each coupons}}
+    <h4><a href="#" class="coupon-link" data-couponId="{{id}}">{{item}}</a></h4>
+    <ul class="list-unstyled mb-5">
+      <li>{{ store_name }}</li>
+      <li>{{expires_in}}</li>
+    </ul>
+  {{/each}}
+</div>
 
-  <!-- <% if logged_in? %>
-    <footer class="footer">
-      <div class="container">
-        <span class="text-muted"><small><%= link_to "Delete Acoount", @user, method: :delete, data: { confirm: "Are you sure you want to delete your account?" } %></small></span>
-      </div>
-    </footer>
-  <% end %> -->
+  
+<footer class="footer">
+  <div class="container">
+    <span class="text-muted"><small>
+      <a data-confirm="Are you sure you want to delete your account?" rel="nofollow" data-method="delete" href="/users/{{ id }}">Delete Acoount</a>
+    </small></span>
+  </div>
+</footer>
+  
