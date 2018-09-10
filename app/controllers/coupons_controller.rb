@@ -37,7 +37,7 @@ class CouponsController < ApplicationController
   def create
     @coupon = Coupon.new(coupon_params)
     if @coupon.save
-      flash[:notice] = "Coupon succesfully created"
+      flash.now[:notice] = "Coupon succesfully created"
       render json: @coupon
     else
       render :new
@@ -63,7 +63,7 @@ class CouponsController < ApplicationController
 
   def update
     if @coupon.update(coupon_params)
-      flash[:notice] = "Successfully updated coupon"
+      flash.now[:notice] = "Successfully updated coupon"
       render json: @coupon 
     else
       render :edit, layout: false
@@ -77,13 +77,13 @@ class CouponsController < ApplicationController
 
   def save_to_profile
     current_user.coupons << @coupon
-    flash[:notice] = "Saved coupon to your profile"
+    flash.now[:notice] = "Saved coupon to your profile"
   end
 
   def delete_from_profile
     user_coupon = current_user.user_coupons.where(coupon_id: @coupon.id)
     UserCoupon.destroy(user_coupon.ids)
-    flash[:notice] = "Deleted coupon from your profile"
+    flash.now[:notice] = "Deleted coupon from your profile"
   end
 
   private
