@@ -31,7 +31,9 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    if current_user == @user
+    if current_user.email == 'dtrump@gmail.com'
+      return redirect_to root_path, alert: "Unauthorized to delete this test account"
+    elsif current_user == @user
       @user.destroy
       session.delete :user_id
       return redirect_to root_path, notice: "Account successfully deleted"
