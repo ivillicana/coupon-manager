@@ -1,5 +1,5 @@
 <div class="container text-center mb-5">
-    <h3>{{ name }}</h3>
+    <h2>{{ name }}</h2>
     <p>{{ email }}</p>
     {{#if image }}
       <div class="media">
@@ -11,16 +11,39 @@
     <% end %> -->
 </div>
 
-<div class="container-list" id="saved-coupons">
-  <h3 class="text-left mb-3">My Saved Coupons</h3>
-  {{#each coupons}}
-    <h4><a href="#" class="coupon-link" data-couponId="{{id}}">{{item}}</a></h4>
-    <ul class="list-unstyled mb-5">
-      <li>{{ store_name }}</li>
-      <li>{{expires_in}}</li>
-    </ul>
-  {{/each}}
-</div>
+<main role="main">
+      <div class="album py-5 bg-light">
+        <div class="container" id="saved-coupons"> 
+          <h3 class="text-center mb-5">My Saved Coupons</h3>
+          <div class="row">
+
+            {{#each coupons}}
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                  <h5 class="h4"><a href="/coupons/{{id}}" class="coupon-link" data-couponId="{{id}}">{{item}}</a></h5>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">{{store_name}}</h5>
+                  <p class="card-text">{{offer_description}}</p>
+                  
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><a href="/coupons/{{id}}" class="coupon-link" data-couponId="{{id}}">View</a></button>
+                      
+                    </div>
+                    <small class="text-muted">{{expires_in}}</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {{/each}}
+
+          </div>
+        </div>
+      </div>
+
+    </main>
 
   
 <footer class="footer">

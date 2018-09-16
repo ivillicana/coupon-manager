@@ -59,6 +59,13 @@ function loadCoupons(data = null) {
           e.preventDefault();
           newCouponForm();
         })
+        $('#delete-from-profile').on('click', function(){
+          deleteFromProfile(this);
+        })
+    
+        $('#save-to-profile').on('click', function () {
+          saveToProfile(this);
+        })
       })
     })
 }
